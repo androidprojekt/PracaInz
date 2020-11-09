@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "155195560854",
+    "firebase_url": "https://pracainz-bfbd8.firebaseio.com",
+    "project_id": "pracainz-bfbd8",
+    "storage_bucket": "pracainz-bfbd8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155195560854:android:e71a9a593285e7d23b03b7",
+        "android_client_info": {
+          "package_name": "com.example.praca_inz_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155195560854-1k60p4c84j1ilfturi9dhc8imda5k73o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.praca_inz_test",
+            "certificate_hash": "9b0d03b9ab6a67c8d1018843fe6f0bfab6c9db48"
+          }
+        },
+        {
+          "client_id": "155195560854-fti764vu58gtdbeo6dsglh0kmdulkhjs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu4MUhb_GTnMxmo0vW-pTKTY7dO4pqkI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "155195560854-fti764vu58gtdbeo6dsglh0kmdulkhjs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

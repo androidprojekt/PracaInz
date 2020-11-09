@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:weightSum="10"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/logoMainImageId"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_weight="8.5"
+        android:background="#FFFFFF"
+        android:contentDescription="@string/castle_image"
+        app:layout_constraintHorizontal_bias="0.304"
+        app:srcCompat="@drawable/logo_castle" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1.5"
+        android:layout_height="0dp" >
+
+        <ImageButton
+            android:id="@+id/goToMenuBtnId"
+            android:layout_width="48dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginRight="26dp"
+            android:layout_marginBottom="47dp"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/go_to_menu_btn"
+            android:onClick="goToMenuMethod"
+            android:rotation="180"
+            app:srcCompat="@drawable/abc_vector_test" />
+    </RelativeLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

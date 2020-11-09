@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">praca_inz</string>
+    <string name="pp_logo">pp_logo</string>
+    <string name="text_go_to_menu">Muzeum \nSztuk \nUżytkowych</string>
+    <string name="about_desc">Muzeum gromadzi obiekty sztuki użytkowej powstałe od średniowiecza do współczesności. To z kunsztem wykonane przedmioty, jednocześnie świadkowie zmieniających się gustów, mód i stylów. Eksponowanymi przedmiotami opowiadamy wielowątkową historię o czasach, w których je wykonano i ludziach, którym służyły. Oddano im głos, bo mówiąc o człowieku dawnych epok,  jego potrzebach, zainteresowaniach, pragnieniach, mówią również wiele o tym, kim my  jesteśmy dzisiaj.Wychodząc niekiedy poza zwyczajowy pokaz muzealny wystawa działa na różne zmysły oraz zachęca do poznania aktywnego. Realizowany w ramach wielu cykli tematycznych bogaty program wydarzeń, prezentuje muzealną kolekcję szerzej, wzbogacając  narrację wystawy stałej, ale także wychodząc poza  nią.</string>
+    <string name="castle_image">castle image</string>
+    <string name="go_to_menu_btn">go to menu btn</string>
+    <string name="logo_of_second_menu">Logo of second menu</string>
+    <string name="o_muzeum">\nO muzeum</string>
+    <string name="przewodnik">\nPrzewodnik</string>
+    <string name="ekspozycja">\nEkspozycja</string>
+    <string name="strona_ninternetowa">Strona \ninternetowa</string>
+    <string name="kim_jestesmy">Kim jesteśmy</string>
+    <string name="jeste_my_jedynym_muzeum_sztuki_uzytkowej_w_polsce">Jesteśmy jedynym muzeum sztuki użytkowej w Polsce.</string>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/about_background"
+    android:orientation="vertical"
+    tools:context=".AboutActivity">
+
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="10"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/aboutTextView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/arimo_bold"
+        android:text="@string/kim_jestesmy"
+        android:textSize="40sp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:id="@+id/aboutTextView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_weight="2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="-110dp"
+        android:text="@string/jeste_my_jedynym_muzeum_sztuki_uzytkowej_w_polsce"
+        android:textSize="25sp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/aboutTextView3"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
+        android:layout_marginTop="150dp"
+        android:text="@string/about_desc"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" />
+
+</LinearLayout>
+</ScrollView>
+</LinearLayout>
