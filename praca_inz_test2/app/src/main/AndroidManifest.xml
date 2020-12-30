@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SavingActivity"></activity>
+        <activity android:name=".OptionsFromMenuActivity"></activity>
         <activity android:name=".LozalizationActivity" />
         <activity android:name=".ExhibitionActivity" />
 

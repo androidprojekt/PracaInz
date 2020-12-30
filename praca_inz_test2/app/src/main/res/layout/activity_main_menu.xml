@@ -37,6 +37,7 @@
         <androidx.cardview.widget.CardView
             android:onClick="goToAboutMethod"
             android:layout_width="wrap_content"
+            android:clickable="true"
             android:layout_height="wrap_content"
             android:layout_row="0"
             android:layout_rowWeight="1"

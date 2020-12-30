@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menuExhibition"
+        android:icon="@drawable/exposition"
+        android:title="Eksponaty" />
+
+    <item android:id="@+id/menuInformation"
+        android:icon="@drawable/info_icon"
+        android:title="Jak działa" />
+
+    <item android:id="@+id/menuFavorites"
+        android:icon="@drawable/heart"
+        android:title="Ulubione" />
+
+    <item android:title="inne">
+
+        <menu>
+            <item
+                android:id="@+id/menuSettings"
+                android:icon="@drawable/others"
+                android:title="Ustawienia" />
+            <item
+                android:id="@+id/menuAbout"
+                android:icon="@drawable/about"
+                android:title="O nas" />
+            <item
+                android:id="@+id/menuLogout"
+                android:icon="@drawable/logout"
+                android:title="Wyjdź" />
+        </menu>
+
+    </item>
+
+</menu>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".aboutUsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="5dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logopp"
+            android:scaleType="fitStart"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_centerVertical="true"
+            android:text="Politechnika Poznańska"
+            android:textColor="#000"
+            android:textSize="15sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="200dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-light"
+            android:text="Jesteśmy studentami blablablablaLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at velit in nulla porttitor tincidunt quis eget turpis. Sed egestas lacus eget enim rhoncus ornare. In vestibulum fermentum cursus. Mauris et pharetra lorem. Aliquam consectetur, metus sed commodo vestibulum, metus augue vehicula magna, at accumsan neque tortor sit amet risus. Phasellus dapibus, felis nec faucibus feugiat, metus mi ullamcorper odio, vitae euismod orci nunc eget justo. Integer a pharetra lacus. Phasellus laoreet velit id erat euismod, non commodo ligula accumsan. Integer porttitor egestas ullamcorper."
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+
+</FrameLayout>
