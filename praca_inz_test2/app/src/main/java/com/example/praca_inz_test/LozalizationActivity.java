@@ -671,10 +671,6 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         }
     }
 
-    public void startAnimMethod(View view) {
-        //circleAnim.startAnimation(scaleUp);
-        circleAnim.startAnimation(scaleDown);
-    }
 
     /*
     public void startAnimMethod(View view) {
