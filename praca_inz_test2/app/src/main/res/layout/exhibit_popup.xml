@@ -57,12 +57,32 @@
         android:id="@+id/buttonFromDialog1Id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         android:text="przycisk"
         android:layout_marginTop="60dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/transparent_btn_style"
         android:textColor="#fff">
     </Button>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/ImageRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:numStars="5"
+        android:stepSize="1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oceń eksponat!"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        >
+    </TextView>
 
 
 </LinearLayout>

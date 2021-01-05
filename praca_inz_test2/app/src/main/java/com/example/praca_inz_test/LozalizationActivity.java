@@ -4,15 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -22,11 +17,9 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
@@ -38,10 +31,6 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.telephony.PhoneStateListener;
-import android.telephony.SignalStrength;
-import android.telephony.TelephonyManager;
-import android.text.format.Formatter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,25 +39,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Method;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -82,15 +64,18 @@ import static java.lang.String.valueOf;
 public class LozalizationActivity extends AppCompatActivity implements SensorEventListener {
 
     NavigationView navigationView;
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String EXHIBIT1 = "text";
+    Float loadRateExhibit1 = 0f;
 
-    //------------------------------variables needed to compass------------------------------------
+    //------------------------------variables needed to compass-------------------------------------
     static public SensorManager mSensorManager;
     private final float[] accelerometerReading = new float[3];
     private final float[] magnetometerReading = new float[3];
     private int azimuth;
     private final float[] rotationMatrix = new float[9];
     private final float[] orientationAngles = new float[3];
-    //---------------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------------------
 
     //-------------creating variables and objects needed to BLE and WIFI scan-----------------------
     private BluetoothManager mBluetoothManager;
@@ -863,6 +848,23 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         exhibitDialog.setContentView(R.layout.exhibit_popup);
         txtClose = exhibitDialog.findViewById(R.id.txtCloseId);
         Button buttonInDialog = exhibitDialog.findViewById(R.id.buttonFromDialog1Id);
+
+        RatingBar ratingBar;
+        ratingBar = exhibitDialog.findViewById(R.id.ratingBar);
+        loadDataFromSharedPrefecences(); //load user rate
+        ratingBar.setRating(loadRateExhibit1); //set user rate
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float myRating, boolean fromUser) {
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                float myRate = ratingBar.getRating();
+                editor.putFloat(EXHIBIT1,myRate);
+                editor.apply();
+            }
+        });
+
+
         txtClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -873,4 +875,10 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         exhibitDialog.show();
 
     }
+
+    public void loadDataFromSharedPrefecences() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        loadRateExhibit1 = sharedPreferences.getFloat(EXHIBIT1,0);
+    }
+
 }
