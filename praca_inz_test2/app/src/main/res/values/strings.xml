@@ -14,4 +14,21 @@
     <string name="jeste_my_jedynym_muzeum_sztuki_uzytkowej_w_polsce">Jesteśmy jedynym muzeum sztuki użytkowej w Polsce.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="furniture_desc">Zbiory mebli składają się z około 1400 obiektów i obejmują przedmioty powstałe od średniowiecza do współczesności. W ogromnej większości są to sprzęty europejskie.</string>
+    <string name="ceramics_desc">Zbiór ceramiki obejmuje wszystkie gatunki dziedziny i liczy ok. 3.500 eksponatów.</string>
+
+    <string-array name="exhibitions">
+        <item>Item1</item>
+        <item>Item2</item>
+        <item>Item4</item>
+        <item>Item5</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>random desc</item>
+        <item>random desc</item>
+        <item>random desc</item>
+        <item>random desc</item>
+        <item>random desc</item>
+    </string-array>
 </resources>

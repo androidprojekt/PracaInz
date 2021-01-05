@@ -5,12 +5,13 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="#fff"
     tools:context=".LozalizationActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/layoutToolBar"
@@ -41,65 +42,92 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="420dp"
-            android:layout_marginTop="?actionBarSize"
-            app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="15dp"
-            android:paddingEnd="15dp">
-
+        <RelativeLayout
+            android:id="@+id/main"
+            android:layout_width="312dp"
+            android:layout_height="324dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/room_grid">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/testowa_mapka" />
-        </LinearLayout>
+                android:id="@+id/imageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="0dp"
+                android:rotation="90"
+                app:srcCompat="@drawable/abc_vector_test" />
+
+            <ImageView
+                android:id="@+id/imgAmnimation1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="165dp"
+                android:visibility="invisible"
+                android:layout_marginTop="125dp"
+                android:src="@drawable/circle"
+                />
+
+            <ImageButton
+                android:id="@+id/exhibit1BtnId"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="165dp"
+                android:onClick="showExhibitPopUp"
+                android:layout_marginTop="125dp"
+                app:srcCompat="@android:drawable/btn_star" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="500dp"
-            >
+            android:layout_marginTop="450dp">
 
             <Button
-                android:id="@+id/btnMoreInfso"
-                android:layout_width="140dp"
+                android:id="@+id/startLocalizationBtnId"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/round_btn_estimate"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:text="znajdź mnie!"
-                android:textColor="#fff"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:text="start localization" />
 
-                />
-
-            <Button
-                android:id="@+id/btnMor2eInfo"
-                android:layout_width="140dp"
+            <TextView
+                android:id="@+id/estimateOfXId"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="30dp"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/round_btn_estimate"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:text="Prowadź mnie!"
-                android:textColor="#fff" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Estimate X: " />
+
+            <TextView
+                android:id="@+id/estimateOfYId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="50dp"
+                android:text="Estimate Y: " />
+
+            <TextView
+                android:id="@+id/numberOfNeighbours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="80dp"
+                android:text="Neighbours: " />
+
+            <TextView
+                android:id="@+id/directionCompassId"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="180dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
+                android:text="Direction: " />
 
         </RelativeLayout>
 
+    </RelativeLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

@@ -20,15 +20,17 @@ public class ExhibitionActivity extends AppCompatActivity {
     Integer[] colors = null;
     List<Model> models ;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exhibition);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         overridePendingTransition(R.anim.fade_in, R.anim.fadeout);
+
         models = new ArrayList<>();
-        models.add(new Model(R.drawable.pic1, "Meble","Zbiory mebli składają się z około 1400 obiektów i obejmują przedmioty powstałe od średniowiecza do współczesności. W ogromnej większości są to sprzęty europejskie."));
-        models.add(new Model(R.drawable.pic2, "Ceramika","Zbiór ceramiki obejmuje wszystkie gatunki dziedziny i liczy ok. 3.500 eksponatów."));
+        models.add(new Model(R.drawable.pic1, "Meble",getString(R.string.furniture_desc)));
+        models.add(new Model(R.drawable.pic2, "Ceramika",getString(R.string.ceramics_desc)));
         models.add(new Model(R.drawable.pic3, "test3","opis obrazka 3"));
         models.add(new Model(R.drawable.pic4, "test4","opis obrazka 4"));
 
