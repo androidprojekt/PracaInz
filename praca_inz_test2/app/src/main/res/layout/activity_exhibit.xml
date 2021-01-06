@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExhibitActivity">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="125dp"
+                android:layout_height="170dp"
+                android:background="#2d2d2d"
+                android:id="@+id/imgExhibThumbnailId"
+                android:scaleType="centerCrop"/>
+            <TextView
+                android:id="@+id/txtExhibitNameId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exhibit Name"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+
+
+            <TextView
+                android:id="@+id/txtExhibitDescId"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                android:text="Description"
+                android:inputType="textMultiLine"
+
+                android:minLines="6"
+                android:gravity="top|left"
+                android:maxLines= "9"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:scrollbars="vertical"
+                />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="50dp">
+
+
+            <RatingBar
+                android:id="@+id/ratingbar"
+                style="@style/ImageRatingBar"
+                android:layout_width="wrap_content"
+
+                android:layout_height="match_parent"
+                android:numStars="5"
+                android:stepSize="1"
+                />
+            <TextView
+                android:id="@+id/value"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:text="Twoja ocena to: "
+                />
+</LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

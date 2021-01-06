@@ -32,8 +32,11 @@ public class OptionsFromMenuActivity extends AppCompatActivity {
         switch(optionType)
         {
             case 1:
-                fragment = new exhibitionFragment();
-                loadFragment(fragment);
+                //fragment = new exhibitionFragment();
+                //loadFragment(fragment);
+                Intent goToMenuIntent;
+                goToMenuIntent = new Intent(getApplicationContext(),listOfExhibitsActivity.class);
+                startActivity(goToMenuIntent);
                 break;
             case 2:
                 fragment = new InformationsFragment();
