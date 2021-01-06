@@ -68,6 +68,9 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     public static final String EXHIBIT1 = "text";
     Float loadRateExhibit1 = 0f;
 
+    Button showUserLocation;
+    ImageView circleUserAnim;
+
     //------------------------------variables needed to compass-------------------------------------
     static public SensorManager mSensorManager;
     private final float[] accelerometerReading = new float[3];
@@ -139,12 +142,12 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     ArrayList<Point> listOfPreviousCoordinates; //include 3 previous localization
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
-    double radiusOfCircleArea=0.75;
+    double radiusOfCircleArea = 0.75;
     Point exhibitPoint;
     //----------------------------------------------------------------------------------------------
 
     ImageView circleAnim;
-    Animation scaleUp,scaleDown;
+    Animation scaleUp, scaleDown;
     Dialog exhibitDialog;
     ImageButton exhibit1Btn;
 
@@ -177,17 +180,20 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //------------------------------------------------------------------------------------------
 
         //------------------------------------------COPIED----------------------------------------------
-        circleAnim = findViewById(R.id.imgAmnimation1);
-        scaleUp = AnimationUtils.loadAnimation(this,R.anim.scale_up);
-        scaleDown=AnimationUtils.loadAnimation(this,R.anim.scale_down);
+        showUserLocation = findViewById(R.id.showUserLocationBtnId);
+        circleUserAnim = findViewById(R.id.imgUserAnimation);
 
-        exhibitDialog=new Dialog(this);
+        circleAnim = findViewById(R.id.imgAmnimation1);
+        scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
+
+        exhibitDialog = new Dialog(this);
         exhibit1Btn = findViewById(R.id.exhibit1BtnId);
 
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
         listOfPreviousCoordinates = new ArrayList<>();
-        exhibitPoint = new Point(2,2,0);
+        exhibitPoint = new Point(2, 2, 0);
 
         //-----------------------------------------VIEWS--------------------------------------------
         context = getApplicationContext();
@@ -263,6 +269,17 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         BLEstartScan.run();
         //------------------------------------------------------------------------------------------
 
+        showUserLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (tempParams != null) {
+                    circleUserAnim.setLayoutParams(tempParams);
+                    circleUserAnim.startAnimation(scaleDown);
+                }
+            }
+        });
+
         startLocalization.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -287,7 +304,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //---------------initializing variables to constrained search-space-------------------------
         estimateX = 0.0;
         estimateY = 0.0;
-        minX =0;
+        minX = 0;
         minY = 0;
         maxX = xPoints;
         maxY = yPoints;
@@ -296,11 +313,10 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
     }
 
-    public void goToOptionMenuItem(Integer id)
-    {
-        Intent intent ;
-        intent = new Intent(getApplicationContext(),OptionsFromMenuActivity.class);
-        intent.putExtra("OPTION_ID",id);
+    public void goToOptionMenuItem(Integer id) {
+        Intent intent;
+        intent = new Intent(getApplicationContext(), OptionsFromMenuActivity.class);
+        intent.putExtra("OPTION_ID", id);
         startActivity(intent);
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -318,10 +334,8 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
     }
 
-    public void selectFromOptionMenu(int id)
-    {
-        switch(id)
-        {
+    public void selectFromOptionMenu(int id) {
+        switch (id) {
             case R.id.menuExhibition:
                 goToOptionMenuItem(1);
                 break;
@@ -500,7 +514,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     public void estimatePositions() throws JSONException {
         ArrayList<Double> tempTab = new ArrayList<>(); // (x_a - x_b)^2
         double tempCalculation = 0.0;
-        Log.d("Coordinate ", "x: " + estimateX+", y: "+estimateY);
+        Log.d("Coordinate ", "x: " + estimateX + ", y: " + estimateY);
 
         rangeOfSearchSpace();  //determining x and y coordinates needed to search-space
 
@@ -567,17 +581,15 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
         //------------------------------------adaptive method of KNN--------------------------------
         int numberOfNeighbours = 0;
-        for (Point pt : referencePointList)
-        {
-            if(pt.getEuclideanDistance()<= maxEuclideanDistance)
-            {
+        for (Point pt : referencePointList) {
+            if (pt.getEuclideanDistance() <= maxEuclideanDistance) {
                 x += pt.getX() * (1 / pt.getEuclideanDistance());
                 y += pt.getY() * (1 / pt.getEuclideanDistance());
                 sumOfWeights += 1 / pt.getEuclideanDistance();
                 numberOfNeighbours++;
             }
         }
-        nrOfNeighbours.setText("Neighbours: "+String.valueOf(numberOfNeighbours));
+        nrOfNeighbours.setText("Neighbours: " + String.valueOf(numberOfNeighbours));
         //------------------------------------------------------------------------------------------
 
         //-------------------------------old version - standard KNN---------------------------------
@@ -619,11 +631,11 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //adding to the previous coordinates list:
         //transmitter.setLastUpdate(simpleDateFormat.format(calendar.getTime()));
         calendar = Calendar.getInstance();
-        Point actualPoint = new Point(estimateX,estimateY,simpleDateFormat.format(calendar.getTime()));
+        Point actualPoint = new Point(estimateX, estimateY, simpleDateFormat.format(calendar.getTime()));
         // call method which adding to the list
         //----------------------------------------
         addToThePreviousCoordinates(actualPoint);
-        if(exhibitZone()==1)  circleAnim.startAnimation(scaleDown);
+        if (exhibitZone() == 1) circleAnim.startAnimation(scaleDown);
         prepareToNewScan();
     }
 
@@ -706,7 +718,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     public static class timeSorter implements Comparator<Point> {
         @Override
         public int compare(Point p1, Point p2) {
-            return String.valueOf(p1.getLastUpdate()).compareTo(p2.getLastUpdate()) ;
+            return String.valueOf(p1.getLastUpdate()).compareTo(p2.getLastUpdate());
         }
     }
 
@@ -725,28 +737,25 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //------------------------------------------------------------------------------------------
     }
 
-    public void rangeOfSearchSpace()
-    {
-        if(firstRun)
-        {
+    public void rangeOfSearchSpace() {
+        if (firstRun) {
             firstRun = false;
-        }
-        else {
-            minX = (int) Math.ceil(estimateX -1);
-            if(minX<0)
-                minX=0;
-            maxX = (int) Math.floor(estimateX+1) +1;
-            if(maxX >xPoints)
-                maxX =xPoints;
-            minY = (int) Math.ceil(estimateY -1);
-            if(minY<0)
-                minY=0;
-            maxY = (int) Math.floor(estimateY+1) +1;
-            if(maxY >yPoints)
-                maxY =yPoints;
+        } else {
+            minX = (int) Math.ceil(estimateX - 1);
+            if (minX < 0)
+                minX = 0;
+            maxX = (int) Math.floor(estimateX + 1) + 1;
+            if (maxX > xPoints)
+                maxX = xPoints;
+            minY = (int) Math.ceil(estimateY - 1);
+            if (minY < 0)
+                minY = 0;
+            maxY = (int) Math.floor(estimateY + 1) + 1;
+            if (maxY > yPoints)
+                maxY = yPoints;
 
-            Log.d("Cordinate ", "min x: " + minX+", max x: "+ maxX);
-            Log.d("Cordinate ", "min y: " + minY+", max y: "+ maxY);
+            Log.d("Cordinate ", "min x: " + minX + ", max x: " + maxX);
+            Log.d("Cordinate ", "min y: " + minY + ", max y: " + maxY);
         }
     }
 
@@ -766,80 +775,74 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         return direction;
     }
 
-    public String sumOfDirectionIterators(){
-        int upIterator=0;
-        int downIterator=0;
-        int leftIterator=0;
-        int rightIterator=0;
+    public String sumOfDirectionIterators() {
+        int upIterator = 0;
+        int downIterator = 0;
+        int leftIterator = 0;
+        int rightIterator = 0;
 
         for (Transmitter transmitter : beaconList) {
-            upIterator+=transmitter.getDirectionIteratorUp();
-            downIterator+=transmitter.getDirectionIteratorDown();
-            leftIterator+=transmitter.getDirectionIteratorLeft();
-            rightIterator+=transmitter.getDirectionIteratorRight();
+            upIterator += transmitter.getDirectionIteratorUp();
+            downIterator += transmitter.getDirectionIteratorDown();
+            leftIterator += transmitter.getDirectionIteratorLeft();
+            rightIterator += transmitter.getDirectionIteratorRight();
         }
 
-        upIterator+=wifiList.get(0).getDirectionIteratorUp();
-        downIterator+=wifiList.get(0).getDirectionIteratorDown();
-        leftIterator+=wifiList.get(0).getDirectionIteratorLeft();
-        rightIterator+=wifiList.get(0).getDirectionIteratorRight();
+        upIterator += wifiList.get(0).getDirectionIteratorUp();
+        downIterator += wifiList.get(0).getDirectionIteratorDown();
+        leftIterator += wifiList.get(0).getDirectionIteratorLeft();
+        rightIterator += wifiList.get(0).getDirectionIteratorRight();
 
         int max = upIterator;
         String tempDirection = "UP";
 
-        if(max< downIterator) {
+        if (max < downIterator) {
             max = downIterator;
-            tempDirection="DOWN";
+            tempDirection = "DOWN";
         }
-        if(max<leftIterator)
-        {
-            max=leftIterator;
-            tempDirection="LEFT";
+        if (max < leftIterator) {
+            max = leftIterator;
+            tempDirection = "LEFT";
         }
-        if(max<rightIterator) {
-            max= rightIterator;
-            tempDirection="RIGHT";
+        if (max < rightIterator) {
+            max = rightIterator;
+            tempDirection = "RIGHT";
         }
         return tempDirection;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void addToThePreviousCoordinates(Point pt)
-    {
-        if(listOfPreviousCoordinates.size()==3)
-        {
-            int lastIndex= listOfPreviousCoordinates.size()-1;
+    public void addToThePreviousCoordinates(Point pt) {
+        if (listOfPreviousCoordinates.size() == 3) {
+            int lastIndex = listOfPreviousCoordinates.size() - 1;
             listOfPreviousCoordinates.remove(lastIndex);
         }
-        listOfPreviousCoordinates.add(0,pt); //adding point in first index at list and shifting other points to the end? Is it okay?
+        listOfPreviousCoordinates.add(0, pt); //adding point in first index at list and shifting other points to the end? Is it okay?
         //listOfPreviousCoordinates.sort(new timeSorter());
         Log.d("listcheck", "-------------------------------------");
-        for(Point p : listOfPreviousCoordinates)
-        {
-            Log.d("listcheck", "sort list. x: "+p.getActualX()+" y: "+p.getActualY()+" time: "+p.getLastUpdate());
+        for (Point p : listOfPreviousCoordinates) {
+            Log.d("listcheck", "sort list. x: " + p.getActualX() + " y: " + p.getActualY() + " time: " + p.getLastUpdate());
         }
     }
 
-    public int exhibitZone()
-    {
-        int exhibit=0; //none exhibit
+    public int exhibitZone() {
+        int exhibit = 0; //none exhibit
         double error = 0.0;
         boolean checkFlag = true;
 
-        for(Point pt : listOfPreviousCoordinates)
-        {
-            error=0.0;
-            error =Math.sqrt(Math.pow(Math.abs(pt.getActualX()-exhibitPoint.getX()),2)
-                    +Math.pow(Math.abs(pt.getActualY()-exhibitPoint.getY()),2));
-            if(error>radiusOfCircleArea) checkFlag = false;
+        for (Point pt : listOfPreviousCoordinates) {
+            error = 0.0;
+            error = Math.sqrt(Math.pow(Math.abs(pt.getActualX() - exhibitPoint.getX()), 2)
+                    + Math.pow(Math.abs(pt.getActualY() - exhibitPoint.getY()), 2));
+            if (error > radiusOfCircleArea) checkFlag = false;
         }
-        if(checkFlag) exhibit=1;
+        if (checkFlag) exhibit = 1;
 
 
         return exhibit;
     }
 
-    public void showExhibitPopUp(View v){
+    public void showExhibitPopUp(View v) {
         TextView txtClose;
         exhibitDialog.setContentView(R.layout.exhibit_popup);
         txtClose = exhibitDialog.findViewById(R.id.txtCloseId);
@@ -855,12 +858,12 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                 SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 float myRate = ratingBar.getRating();
-                editor.putFloat(EXHIBIT1,myRate);
+                editor.putFloat(EXHIBIT1, myRate);
                 editor.apply();
             }
         });
 
-    //comment
+        //comment
         txtClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -873,8 +876,8 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     }
 
     public void loadDataFromSharedPrefecences() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
-        loadRateExhibit1 = sharedPreferences.getFloat(EXHIBIT1,0);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        loadRateExhibit1 = sharedPreferences.getFloat(EXHIBIT1, 0);
     }
 
 }

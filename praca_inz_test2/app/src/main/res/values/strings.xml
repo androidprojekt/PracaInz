@@ -20,6 +20,19 @@
     <string name="exhibExampleDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit metus sit amet tellus molestie, et venenatis nunc tempor. Aliquam hendrerit dapibus risus ac rhoncus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce dictum egestas sem. Etiam faucibus lorem et sapien feugiat rhoncus. In vitae ante imperdiet, porttitor nisi sit amet, imperdiet lacus. Nunc semper orci nec dapibus molestie. Nam tristique odio a congue dictum. Nunc gravida ultrices ipsum nec sodales. Fusce vitae luctus tellus.</string>
     <string name="metals_desc">Dział Złotnictwa, Biżuterii i Wyrobów z Metali Nieszlachetnych gromadzi wyroby złotnicze, jubilerskie, konwisarskie (wykonane z cyny), zegarmistrzowskie, ludwisarskie (odlane z miedzi, mosiądzu, spiżu lub brązu), rusznikarskie (broń palna) i płatnerskie (zbroje i broń biała) oraz kowalskie, czyli wszystko, co wykonano z metali i ich stopów, także połączonych z kolorowymi kamieniami, emaliami, drewnem, kością słoniową, muszlą czy szkłem.</string>
     <string name="fabrics_desc">Na kolekcję Działu Tkanin składają się tkaniny dekoracyjne, ubiory, akcesoria mody, paramenty liturgiczne, tkaniny odzieżowe i obiciowe oraz zbiór współczesnej tkaniny unikatowej. Do najcenniejszych należą gobeliny zachodnioeuropejskie z okresu od XVI do XVIII wieku, zwłaszcza z manufaktur flamandzkich i brukselskich, m.in. z warsztatu rodziny Leyniers.</string>
+
+    <string name="o_nas">O nas</string>
+    <string name="jesteśmy_studentami">Jesteśmy studentami kierunku Elektronika i Telekomunikacja na wydziale Informatyki i Telekomunikacji Politechniki Poznańskiej.\n\n
+        Projekt stworzony został jako praca inżynierska, której celem było opracowanie aplikacji mobilnej „Inteligentne oprowadzanie po muzeum”.\n\n
+        Głównym zadaniem systemu inteligentnego oprowadzania jest umożliwienie interakcji użytkownika z aplikacją mobilną i estymacja jego położenia w pomieszczeniu, na podstawie której na ekranie telefonu zwiedzającego będą wyzwalały się odpowiednie treści odnoszące się do eksponatów znajdujących się w jego pobliżu.</string>
+    <string name="jak_dziala">Jak działa?</string>
+    <string name="Wykorzystanie_czujnikow">Wykorzystanie czujników Estimote Proximity Beacon oraz punktu dostępowego WiFi umożliwia wyznaczanie położenia użytkownika, dzięki temu na ekranie telefonu eksponat w jego najbliższym otoczeniu zostaje podświetlony.</string>
+    <string name="funkcje">Funkcje w zakładce Przewodnik:</string>
+    <string name="podejcie">- podejście do eksponatu spowoduje jego podświetlenie</string>
+    <string name="klikniecie">- możliwość kliknięcia danego eksponatu zapewnia zwiedzającemu możliwość zasięgnięcia informacji na jego temat oraz umożliwia jego ocenę </string>
+    <string name="znajdz_mnie">- naciśnięcie przycisku „Znajdź mnie” spowoduje wyświetlenie lokalizacji zwiedzającego na mapie sali muzealnej</string>
+
+
     <string-array name="exhibitions">
         <item>Item1</item>
         <item>Item2</item>
