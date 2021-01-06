@@ -14,7 +14,19 @@
         android:layout_centerInParent="true"
         android:overScrollMode="never"
         android:clipToPadding="false"
-/>
+>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="561dp"
+            android:layout_marginEnd="328dp"
+            android:layout_marginRight="328dp"
+            android:text="Nasze Zbiory"
+            android:textColor="#fff" />
+    </androidx.viewpager.widget.ViewPager>
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

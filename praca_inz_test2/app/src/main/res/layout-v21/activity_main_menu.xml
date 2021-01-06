@@ -152,7 +152,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal"
-                    android:text="\nEkspozycja"
+                    android:text="\nEkspozycje"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold" />

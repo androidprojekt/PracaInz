@@ -26,13 +26,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExhibitActivity"></activity>
-        <activity android:name=".listOfExhibitsActivity" />
+        <activity android:name=".ExhibitActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".listOfExhibitsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".OptionsFromMenuActivity"
-            android:noHistory="true" />
-        <activity android:name=".LozalizationActivity" />
-        <activity android:name=".ExhibitionActivity" />
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LozalizationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ExhibitionActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.actions"

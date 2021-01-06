@@ -31,8 +31,8 @@ public class ExhibitionActivity extends AppCompatActivity {
         models = new ArrayList<>();
         models.add(new Model(R.drawable.pic1, "Meble",getString(R.string.furniture_desc)));
         models.add(new Model(R.drawable.pic2, "Ceramika",getString(R.string.ceramics_desc)));
-        models.add(new Model(R.drawable.pic3, "test3","opis obrazka 3"));
-        models.add(new Model(R.drawable.pic4, "test4","opis obrazka 4"));
+        models.add(new Model(R.drawable.pic3, "Metale",getString(R.string.metals_desc)));
+        models.add(new Model(R.drawable.pic4, "Tkaniny",getString(R.string.fabrics_desc)));
 
         adapter=new Adapter(models,this);
         viewPager=findViewById(R.id.viewPager);
@@ -92,8 +92,8 @@ public class ExhibitionActivity extends AppCompatActivity {
 
     public void moreInfoMethod(View view) {
         Context context = getApplicationContext();
-        CharSequence text = "Tutaj więcej informacji :)";
-        int duration = Toast.LENGTH_SHORT;
+        CharSequence text = "Zajrzyj w zakładkę 'strona internetowa' po więcej informacji!";
+        int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();

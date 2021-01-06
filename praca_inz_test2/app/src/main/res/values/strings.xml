@@ -9,15 +9,17 @@
     <string name="o_muzeum">\nO muzeum</string>
     <string name="przewodnik">\nPrzewodnik</string>
     <string name="ekspozycja">\nEkspozycja</string>
+    <string name="ekspozycje">\nEkspozycje</string>
     <string name="strona_ninternetowa">Strona \ninternetowa</string>
     <string name="kim_jestesmy">Kim jesteśmy</string>
     <string name="jeste_my_jedynym_muzeum_sztuki_uzytkowej_w_polsce">Jesteśmy jedynym muzeum sztuki użytkowej w Polsce.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="furniture_desc">Zbiory mebli składają się z około 1400 obiektów i obejmują przedmioty powstałe od średniowiecza do współczesności. W ogromnej większości są to sprzęty europejskie.</string>
-    <string name="ceramics_desc">Zbiór ceramiki obejmuje wszystkie gatunki dziedziny i liczy ok. 3.500 eksponatów.</string>
+    <string name="furniture_desc">Zbiory mebli składają się z około 1400 obiektów i obejmują przedmioty powstałe od średniowiecza do współczesności. W ogromnej większości są to sprzęty europejskie.Mamy pojedyncze meble reprezentujące najważniejsze ośrodki i środowiska meblarskie nowożytności, w tym obiekty meblarstwa włoskiego epoki renesansu, pojedyncze meble francuskie i włoskie XVIII w. oraz z Półwyspu Iberyjskiego.</string>
+    <string name="ceramics_desc">Zbiór ceramiki obejmuje wszystkie gatunki dziedziny i liczy ok. 3.500 eksponatów. Obiekty pochodzą głównie z wytwórni europejskich, mniej liczne są wyroby daleko- i bliskowschodnie.W czesną realizacją jest zespół francuskich płytek posadzkowych z XIII w. W niewielkiej kolekcji kafli piecowych i flizów obiektem szczególnym jest kafel z przedstawieniem Samsona walczącego z lwem z początku XVI w., oraz zespół płytek holenderskich z ok. 1700 r.</string>
     <string name="exhibExampleDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean blandit metus sit amet tellus molestie, et venenatis nunc tempor. Aliquam hendrerit dapibus risus ac rhoncus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce dictum egestas sem. Etiam faucibus lorem et sapien feugiat rhoncus. In vitae ante imperdiet, porttitor nisi sit amet, imperdiet lacus. Nunc semper orci nec dapibus molestie. Nam tristique odio a congue dictum. Nunc gravida ultrices ipsum nec sodales. Fusce vitae luctus tellus.</string>
-
+    <string name="metals_desc">Dział Złotnictwa, Biżuterii i Wyrobów z Metali Nieszlachetnych gromadzi wyroby złotnicze, jubilerskie, konwisarskie (wykonane z cyny), zegarmistrzowskie, ludwisarskie (odlane z miedzi, mosiądzu, spiżu lub brązu), rusznikarskie (broń palna) i płatnerskie (zbroje i broń biała) oraz kowalskie, czyli wszystko, co wykonano z metali i ich stopów, także połączonych z kolorowymi kamieniami, emaliami, drewnem, kością słoniową, muszlą czy szkłem.</string>
+    <string name="fabrics_desc">Na kolekcję Działu Tkanin składają się tkaniny dekoracyjne, ubiory, akcesoria mody, paramenty liturgiczne, tkaniny odzieżowe i obiciowe oraz zbiór współczesnej tkaniny unikatowej. Do najcenniejszych należą gobeliny zachodnioeuropejskie z okresu od XVI do XVIII wieku, zwłaszcza z manufaktur flamandzkich i brukselskich, m.in. z warsztatu rodziny Leyniers.</string>
     <string-array name="exhibitions">
         <item>Item1</item>
         <item>Item2</item>
