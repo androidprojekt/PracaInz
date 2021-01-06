@@ -860,7 +860,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
             }
         });
 
-
+    //comment
         txtClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
