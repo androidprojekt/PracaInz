@@ -100,7 +100,7 @@
                 android:textColor="#2f333f"
                 android:layout_marginTop="120dp"
                 android:text="start"
-                android:background="@drawable/btn_dark_style"/>
+                android:background="@drawable/round_button_background"/>
             <Button
                 android:id="@+id/showUserLocationBtnId"
                 android:layout_width="150dp"
@@ -109,7 +109,7 @@
                 android:layout_marginTop="120dp"
                 android:text="Znajdź mnie"
                 android:layout_marginLeft="190dp"
-                android:background="@drawable/btn_dark_style"/>
+                android:background="@drawable/round_button_background"/>
 
             <TextView
                 android:id="@+id/estimateOfXId"
