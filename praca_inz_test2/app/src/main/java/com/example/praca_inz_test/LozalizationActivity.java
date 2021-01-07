@@ -608,16 +608,17 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
         //-------------------moving the arrow across the room map-----------------------------------
         layoutParams = (RelativeLayout.LayoutParams) mainLayout.getLayoutParams();
+        Log.d("Params", "width "+layoutParams.width+", height "+layoutParams.height);
 
-        int leftMarginToAdd = (int) (estimateX * 100 * 1.8);
-        int bottomMarginToAdd = (int) (estimateY * 100 * 1.8);
+        int leftMarginToAdd = (int) (estimateY * 100 * 1.2);
+        int bottomMarginToAdd = (int) (estimateX * 100 * 1.2);
 
         tempParams = (RelativeLayout.LayoutParams) image.getLayoutParams();
-        tempParams.leftMargin = 150;
-        tempParams.topMargin = mainLayout.getLayoutParams().height - 210;
+        tempParams.leftMargin = 540;
+        tempParams.topMargin = mainLayout.getLayoutParams().height - 140;
 
         image.setLayoutParams(tempParams);
-        tempParams.leftMargin += leftMarginToAdd;
+        tempParams.leftMargin -= leftMarginToAdd;
         tempParams.topMargin -= bottomMarginToAdd;
 
         image.setLayoutParams(tempParams);

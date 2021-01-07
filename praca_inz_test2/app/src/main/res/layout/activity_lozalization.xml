@@ -44,11 +44,11 @@
 
         <RelativeLayout
             android:id="@+id/main"
-            android:layout_width="312dp"
-            android:layout_height="324dp"
+            android:layout_width="230dp"
+            android:layout_height="372dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            android:background="@drawable/room_grid">
+            android:background="@drawable/polanka_mapka">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -62,18 +62,18 @@
                 android:id="@+id/imgAmnimation1"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="165dp"
                 android:visibility="invisible"
-                android:layout_marginTop="125dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="77dp"
                 android:src="@drawable/circle"
                 />
             <ImageView
                 android:id="@+id/imgUserAnimation"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="317dp"
                 android:visibility="invisible"
-                android:layout_marginTop="125dp"
                 android:src="@drawable/user_location_circle"
                 />
 
@@ -81,9 +81,9 @@
                 android:id="@+id/exhibit1BtnId"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="165dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="77dp"
                 android:onClick="showExhibitPopUp"
-                android:layout_marginTop="125dp"
                 app:srcCompat="@android:drawable/btn_star" />
         </RelativeLayout>
 

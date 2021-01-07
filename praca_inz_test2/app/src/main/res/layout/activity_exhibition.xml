@@ -27,7 +27,7 @@
         android:text="Więcej informacji"
         android:onClick="moreInfoMethod"
         android:textColor="#fff"
-        android:background="@drawable/transparent_btn_style"
+        android:background="@drawable/transparent_button_background"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:layout_alignParentBottom="true"
