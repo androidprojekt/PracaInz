@@ -5,11 +5,97 @@
     android:layout_height="match_parent"
     tools:context=".InformationsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="How it Works!"
-        android:textSize="30sp"/>
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="5dp">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/jak_dziala"
+                  android:textColor="#000"
+                  android:textStyle="bold"
+                  android:textSize="30sp">
+              </TextView>
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/Wykorzystanie_czujnikow"
+                  android:textColor="#000"
+                  android:textSize="20sp"
+                  android:layout_marginTop="4dp">
+              </TextView>
+          </LinearLayout>
+          <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/funkcje"
+                  android:textSize="20sp"
+                  android:layout_marginTop="10dp">
+              </TextView>
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/podejcie"
+                  android:textSize="20sp"
+                  android:layout_marginTop="10dp">
+              </TextView>
+
+              <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:src="@drawable/exhibit"
+                  android:layout_gravity="center"/>
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/klikniecie"
+                  android:textSize="20sp"
+                  android:layout_marginTop="15dp">
+              </TextView>
+
+              <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:src="@drawable/hearts"
+                  android:layout_gravity="center"/>
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="@string/znajdz_mnie"
+                  android:textSize="20sp"
+                  android:layout_marginTop="15dp">
+              </TextView>
+
+              <ImageView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:src="@drawable/user_location"
+                  android:layout_gravity="center"/>
+
+          </LinearLayout>
+
+      </LinearLayout>
+
+
+
+  </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

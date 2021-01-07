@@ -9,17 +9,13 @@
         android:icon="@drawable/info_icon"
         android:title="Jak działa" />
 
-    <item android:id="@+id/menuFavorites"
+    <item android:id="@+id/menuOpinions"
         android:icon="@drawable/heart"
-        android:title="Ulubione" />
+        android:title="Opinie" />
 
     <item android:title="inne">
 
         <menu>
-            <item
-                android:id="@+id/menuSettings"
-                android:icon="@drawable/others"
-                android:title="Ustawienia" />
             <item
                 android:id="@+id/menuAbout"
                 android:icon="@drawable/about"

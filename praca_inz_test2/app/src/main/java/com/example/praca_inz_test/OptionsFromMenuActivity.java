@@ -1,8 +1,6 @@
 package com.example.praca_inz_test;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -22,10 +20,9 @@ public class OptionsFromMenuActivity extends AppCompatActivity {
         Integer optionType=receivedIntent.getIntExtra("OPTION_ID",0);
         //  1--> menuExhibition
         //  2--> menuInformation
-        //  3--> menuFavorites
-        //  4--> menuSetting
-        //  5--> menuAbout
-        //  6--> menuLogout
+        //  3--> menuOpinions
+        //  4--> menuAbout
+        //  5--> menuLogout
         //------------------------------------------------------------------------------------------
 
         Fragment fragment=null;
@@ -43,19 +40,19 @@ public class OptionsFromMenuActivity extends AppCompatActivity {
                 loadFragment(fragment);
                 break;
             case 3:
-                fragment = new favoritesFragment();
-                loadFragment(fragment);
+                Intent goToOpinionsIntent;
+                goToOpinionsIntent = new Intent(getApplicationContext(),OpinionsActivity.class);
+                startActivity(goToOpinionsIntent);
+                //fragment = new opinionsFragment();
+                //loadFragment(fragment);
                 break;
             case 4:
-                fragment = new settingsFragment();
-                loadFragment(fragment);
-                break;
-            case 5:
                 fragment = new aboutUsFragment();
                 loadFragment(fragment);
                 break;
-            case 6:
-                //logout
+            case 5:
+
+                //
                 break;
             default:
 

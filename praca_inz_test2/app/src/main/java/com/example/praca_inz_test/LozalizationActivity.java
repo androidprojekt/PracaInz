@@ -342,17 +342,14 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
             case R.id.menuInformation:
                 goToOptionMenuItem(2);
                 break;
-            case R.id.menuFavorites:
+            case R.id.menuOpinions:
                 goToOptionMenuItem(3);
                 break;
-            case R.id.menuSettings:
+            case R.id.menuAbout:
                 goToOptionMenuItem(4);
                 break;
-            case R.id.menuAbout:
-                goToOptionMenuItem(5);
-                break;
             case R.id.menuLogout:
-                //goToOptionMenuItem(6);
+                //goToOptionMenuItem(5);
                 break;
             default:
                 //default
