@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -31,6 +33,7 @@ public class OpinionsActivity extends AppCompatActivity {
     private ArrayList<userOpinion> opinionsList;
     ListView opinionsLV;
     long maxid=0;
+    Activity activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class OpinionsActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Send opinion succefully!",Toast.LENGTH_SHORT).show();
                     opinionEditText.setText("");
                     nickEditText.setText("");
+                    hideKeyboard(activity);
                 }
             });
             myRef.addValueEventListener(new ValueEventListener() {
@@ -80,4 +84,14 @@ public class OpinionsActivity extends AppCompatActivity {
                 }
             });
     }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
 }

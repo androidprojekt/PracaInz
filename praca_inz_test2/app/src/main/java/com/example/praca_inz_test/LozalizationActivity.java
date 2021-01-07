@@ -67,9 +67,12 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String EXHIBIT1 = "text";
     Float loadRateExhibit1 = 0f;
-
     Button showUserLocation;
     ImageView circleUserAnim;
+    ImageView circleAnim;
+    Animation scaleUp, scaleDown;
+    Dialog exhibitDialog;
+    ImageButton exhibit1Btn;
 
     //------------------------------variables needed to compass-------------------------------------
     static public SensorManager mSensorManager;
@@ -145,11 +148,6 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     double radiusOfCircleArea = 0.75;
     Point exhibitPoint;
     //----------------------------------------------------------------------------------------------
-
-    ImageView circleAnim;
-    Animation scaleUp, scaleDown;
-    Dialog exhibitDialog;
-    ImageButton exhibit1Btn;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -524,23 +522,23 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                 switch (sumOfDirectionIterators()) {
                     case "UP":
                         tempPoint = objectUpDatabase.getJSONObject(str);
-                        Toast.makeText(getApplicationContext(), "UP", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "UP", Toast.LENGTH_SHORT).show();
                         break;
                     case "DOWN":
                         tempPoint = objectDownDatabase.getJSONObject(str);
-                        Toast.makeText(getApplicationContext(), "DOWN", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "DOWN", Toast.LENGTH_SHORT).show();
                         break;
                     case "LEFT":
                         tempPoint = objectLeftDatabase.getJSONObject(str);
-                        Toast.makeText(getApplicationContext(), "LEFT", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "LEFT", Toast.LENGTH_SHORT).show();
                         break;
                     case "RIGHT":
                         tempPoint = objectRightDatabase.getJSONObject(str);
-                        Toast.makeText(getApplicationContext(), "RIGHT", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "RIGHT", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         tempPoint = objectUpDatabase.getJSONObject(str); //get default object (UP)
-                        Toast.makeText(getApplicationContext(), "Default - UP", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Default - UP", Toast.LENGTH_SHORT).show();
                 }
 
                 tempTab.clear(); // tempTab -->  (x_a - x_b)^2
@@ -681,21 +679,6 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     }
 
 
-    /*
-    public void startAnimMethod(View view) {
-        ImageView anim = findViewById(R.id.imgAmnimation1);
-        anim.animate().scaleX(4f).scaleY(4f).alpha(0f).setDuration(1000).withEndAction(new Runnable() {
-            @Override
-            public void run() {
-                ImageView anim = findViewById(R.id.imgAmnimation1);
-                anim.animate().scaleX(1f).scaleY(1f).alpha(1f);
-            }
-        });
-        //anim.animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(1000);
-    }
-
-     */
-
     public static class euclideanSorter implements Comparator<Point> {
         @Override
         public int compare(Point p1, Point p2) {
@@ -712,12 +695,6 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         }
     }
 
-    public static class timeSorter implements Comparator<Point> {
-        @Override
-        public int compare(Point p1, Point p2) {
-            return String.valueOf(p1.getLastUpdate()).compareTo(p2.getLastUpdate());
-        }
-    }
 
     public void prepareToNewScan() {
         wifiList.get(0).clearSamplesIterator();
