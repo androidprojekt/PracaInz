@@ -24,7 +24,7 @@ public class listOfExhibitsActivity extends AppCompatActivity {
         lstExhibit.add(new Exhibit("Kielich",getString(R.string.exhibExampleDesc),R.drawable.pic3));
         lstExhibit.add(new Exhibit("Dywan",getString(R.string.exhibExampleDesc),R.drawable.pic4));
 
-        RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerview_id);
+        RecyclerView myrv = findViewById(R.id.recyclerview_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,lstExhibit);
         myrv.setLayoutManager(new GridLayoutManager(this,2));
         myrv.setAdapter(myAdapter);

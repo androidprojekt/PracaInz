@@ -1,5 +1,7 @@
 package com.example.praca_inz_test;
 
+
+//class specifying individual exhibits in the listOfExhibitsTab-------------------------------------
 public class Exhibit {
 
     private String exhibitName;
@@ -15,17 +17,6 @@ public class Exhibit {
         Thumbnail = thumbnail;
     }
 
-    public void setExhibitName(String exhibitName) {
-        this.exhibitName = exhibitName;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setThumbnail(int thumbnail) {
-        Thumbnail = thumbnail;
-    }
 
     public String getExhibitName() {
         return exhibitName;

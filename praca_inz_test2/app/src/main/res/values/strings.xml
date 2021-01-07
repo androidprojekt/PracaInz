@@ -31,7 +31,7 @@
     <string name="podejcie">- podejście do eksponatu spowoduje jego podświetlenie</string>
     <string name="klikniecie">- możliwość kliknięcia danego eksponatu zapewnia zwiedzającemu możliwość zasięgnięcia informacji na jego temat oraz umożliwia jego ocenę </string>
     <string name="znajdz_mnie">- naciśnięcie przycisku „Znajdź mnie” spowoduje wyświetlenie lokalizacji zwiedzającego na mapie sali muzealnej</string>
-    <string name="wyraz_opinie">Wyraź swoją opinię</string>
+    <string name="wyraz_opinie">Wyraź swoją opinie</string>
 
     <string-array name="exhibitions">
         <item>Item1</item>

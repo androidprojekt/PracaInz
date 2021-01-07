@@ -29,7 +29,7 @@
     <EditText
         android:id="@+id/opinionEditTextId"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="150dp"
         android:hint="Wyraź tutaj swoją opinie"
         android:background="@drawable/btn_dark_style"
         android:overScrollMode="always"
@@ -48,6 +48,32 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/round_button_background">
     </Button>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_dark_style">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:text="Opinie innych użytkowników">
+        </TextView>
+
+        <ListView
+            android:id="@+id/opinionsListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp" />
+
+    </LinearLayout>
 
 
 

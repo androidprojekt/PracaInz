@@ -1,5 +1,6 @@
 package com.example.praca_inz_test;
 
+//----------------------class defining model in the exhibition tab----------------------------------
 public class Model {
     private int image;
     private String title;

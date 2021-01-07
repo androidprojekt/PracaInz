@@ -12,6 +12,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.List;
 
+//-----the class needed for the correct display of exhibits in the exhibits tab---------------------
 public class Adapter extends PagerAdapter {
     private List<Model> models;
     private LayoutInflater layoutInflater;
