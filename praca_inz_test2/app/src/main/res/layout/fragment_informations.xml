@@ -22,6 +22,8 @@
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginLeft="7dp"
                   android:text="@string/jak_dziala"
                   android:textColor="#000"
                   android:textStyle="bold"
@@ -32,62 +34,82 @@
                   android:layout_height="wrap_content"
                   android:text="@string/Wykorzystanie_czujnikow"
                   android:textColor="#000"
-                  android:textSize="20sp"
-                  android:layout_marginTop="4dp">
+                  android:textSize="18sp"
+                  android:layout_marginTop="15dp"
+                  android:layout_marginLeft="7dp"
+                  >
               </TextView>
           </LinearLayout>
           <LinearLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:layout_marginTop="15dp">
 
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/funkcje"
-                  android:textSize="20sp"
-                  android:layout_marginTop="10dp">
+                  android:textSize="18sp"
+                  android:layout_margin="7dp">
               </TextView>
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/podejcie"
-                  android:textSize="20sp"
-                  android:layout_marginTop="10dp">
+                  android:textSize="18sp"
+                  android:layout_margin="7dp">
               </TextView>
 
               <ImageView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:src="@drawable/exhibit"
+                  android:layout_width="120dp"
+                  android:layout_height="120dp"
+                  android:src="@drawable/podejdz_image_info"
                   android:layout_gravity="center"/>
+
 
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/klikniecie"
-                  android:textSize="20sp"
-                  android:layout_marginTop="15dp">
+                  android:textSize="18sp"
+                  android:layout_marginTop="15dp"
+                  android:layout_margin="5dp">
               </TextView>
 
               <ImageView
+                  android:layout_width="120dp"
+                  android:layout_height="120dp"
+                  android:src="@drawable/click_image_info"
+                  android:layout_gravity="center"/>
+
+              <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  android:src="@drawable/hearts"
+                  android:text="@string/wyraz_opinie"
+                  android:textSize="18sp"
+                  android:layout_margin="7dp">
+              </TextView>
+
+              <ImageView
+                  android:layout_width="110dp"
+                  android:layout_height="110dp"
+                  android:src="@drawable/ocena_image_info"
                   android:layout_gravity="center"/>
 
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/znajdz_mnie"
-                  android:textSize="20sp"
-                  android:layout_marginTop="15dp">
+                  android:textSize="18sp"
+                  android:layout_marginTop="15dp"
+                  android:layout_margin="7dp">
               </TextView>
 
               <ImageView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:src="@drawable/user_location"
+                  android:layout_width="120dp"
+                  android:layout_height="120dp"
+                  android:src="@drawable/location_icon_info"
                   android:layout_gravity="center"/>
 
           </LinearLayout>

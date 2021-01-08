@@ -29,9 +29,9 @@
     <string name="Wykorzystanie_czujnikow">Wykorzystanie czujników Estimote Proximity Beacon oraz punktu dostępowego WiFi umożliwia wyznaczanie położenia użytkownika, dzięki temu na ekranie telefonu eksponat w jego najbliższym otoczeniu zostaje podświetlony.</string>
     <string name="funkcje">Funkcje w zakładce Przewodnik:</string>
     <string name="podejcie">- podejście do eksponatu spowoduje jego podświetlenie</string>
-    <string name="klikniecie">- możliwość kliknięcia danego eksponatu zapewnia zwiedzającemu możliwość zasięgnięcia informacji na jego temat oraz umożliwia jego ocenę </string>
-    <string name="znajdz_mnie">- naciśnięcie przycisku „Znajdź mnie” spowoduje wyświetlenie lokalizacji zwiedzającego na mapie sali muzealnej</string>
-    <string name="wyraz_opinie">Wyraź swoją opinie</string>
+    <string name="klikniecie">- kliknij na dany eksponat na mapce, aby dowiedzieć się więcej</string>
+    <string name="znajdz_mnie">- naciśnij przycisk „Znajdź mnie”, aby wyświetlić swoją lokalizację na mapie sali muzealnej</string>
+    <string name="wyraz_opinie">- możesz ocenić eksponat, a także napisać swoją opinię sięgając do zakładki Opinie</string>
 
     <string-array name="exhibitions">
         <item>Item1</item>
