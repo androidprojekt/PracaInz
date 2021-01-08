@@ -29,7 +29,7 @@ public class SliderAdapter extends PagerAdapter {
     public int[] slide_Images = {
             R.drawable.podejdz_image_info,
             R.drawable.click_image_info,
-            R.drawable.podejdz_image_info,
+            R.drawable.ocena_image_info,
             R.drawable.location_icon_info
     } ;
 
