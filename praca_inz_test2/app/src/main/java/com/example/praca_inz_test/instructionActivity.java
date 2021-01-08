@@ -14,7 +14,7 @@ public class instructionActivity extends AppCompatActivity {
     private SliderAdapter sliderAdapter;
     private LinearLayout mDotLayout;
     private TextView[] mDots;
-    Button button;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
