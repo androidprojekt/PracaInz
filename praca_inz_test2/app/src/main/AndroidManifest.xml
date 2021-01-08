@@ -26,7 +26,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OpinionsActivity"></activity>
+        <activity android:name=".instructionActivity"
+            android:noHistory="true"/>
+        <activity android:name=".OpinionsActivity" />
         <activity
             android:name=".ExhibitActivity"
             android:screenOrientation="portrait" />
