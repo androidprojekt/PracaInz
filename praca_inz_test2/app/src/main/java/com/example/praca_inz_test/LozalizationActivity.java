@@ -42,7 +42,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -114,17 +113,23 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     int numberOfWifi = 1;    // number of AP's
     int finishedBeaconsIterator = 0; //variable that determines whether the measurements have been collected from beacons
     int finishedWifiIterator = 0; //variable that determines whether the measurements have been collected from wifi
-    int xPoints = 4; // number of X coordinates
-    int yPoints = 4; // number of Y coordinates
+    int xPoints = 8; // number of X coordinates
+    int yPoints = 5; // number of Y coordinates
     double percentRangeOfEuclideanDist = 0.2; //percentage of the Euclidean distance range
     //----------------------------------------------------------------------------------------------
 
     //-------------variables needed to determine the direction intervals in compass-----------------
     String direction = "UP"; //default value
+
+    /* zuzia pokoj
     int upperLimitUp = 120;
     int upperLimitRight = 210;
     int upperLimitDown = 340;
-    int upperLimitLeft = 50;
+    int upperLimitLeft = 50;*/
+    int upperLimitUp = 327;
+    int upperLimitRight = 50;
+    int upperLimitDown = 142;
+    int upperLimitLeft = 240;
     //----------------------------------------------------------------------------------------------
     //-------------------------variables needed to constrained search-space-------------------------
     double estimateX; //previous value of estimate x coordination
@@ -145,8 +150,11 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     ArrayList<Point> listOfPreviousCoordinates; //include 3 previous localization
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
-    double radiusOfCircleArea = 0.75;
-    Point exhibitPoint;
+    double radiusOfCircleArea = 2;
+    Point firstExhibitPoint;
+    Point secondExhibitPoint;
+    Point thirdExhibitPoint;
+
     //----------------------------------------------------------------------------------------------
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -191,7 +199,10 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
         listOfPreviousCoordinates = new ArrayList<>();
-        exhibitPoint = new Point(2, 2, 0);
+        firstExhibitPoint = new Point(6, 3, 0);
+        secondExhibitPoint = new Point(4, 1, 0);
+        thirdExhibitPoint = new Point(0, 3, 0);
+
 
         //-----------------------------------------VIEWS--------------------------------------------
         context = getApplicationContext();
@@ -359,7 +370,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //reading the main database file
         String json = null;
         try {
-            InputStream is = getAssets().open("zuzia_pokoj_final.json");
+            InputStream is = getAssets().open("polanka_final.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -409,7 +420,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                     }
                 }
             }
-            mHandler.postDelayed(wifiScanner, 500); //nie wiadomo co z czasem, jaka wartosc przyjac?
+            mHandler.postDelayed(wifiScanner, 200); //nie wiadomo co z czasem, jaka wartosc przyjac?
         }
     };
 
@@ -516,7 +527,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         for (int x = minX; x < maxX; x++) {
             for (int y = minY; y < maxY; y++) {
                 String str = "" + x + "," + y;
-                Log.d("Coordinate", ": " + str);
+                Log.d("test123", ": " + str);
 
                 JSONObject tempPoint;
                 switch (sumOfDirectionIterators()) {
@@ -655,7 +666,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         // "orientationAngles" now has up-to-date information.
         azimuth = (int) Math.toDegrees(orientationAngles[0]);
         azimuth = (azimuth + 360) % 360;
-        image.setRotation(azimuth); // trzeba edytowac
+        image.setRotation(azimuth-280); // trzeba edytowac
         directionCompassTv.setText("Direction value: " + azimuth + "°");
     }
 
@@ -713,19 +724,21 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     }
 
     public void rangeOfSearchSpace() {
+        int tempEstimateX = (int) Math.round(estimateX);
+        int tempEstimateY = (int) Math.round(estimateY);
         if (firstRun) {
             firstRun = false;
         } else {
-            minX = (int) Math.ceil(estimateX - 1);
+            minX = (int) Math.ceil(tempEstimateX - 2);
             if (minX < 0)
                 minX = 0;
-            maxX = (int) Math.floor(estimateX + 1) + 1;
+            maxX = (int) Math.floor(tempEstimateX+ 2) + 1;
             if (maxX > xPoints)
                 maxX = xPoints;
-            minY = (int) Math.ceil(estimateY - 1);
+            minY = (int) Math.ceil(tempEstimateY - 2);
             if (minY < 0)
                 minY = 0;
-            maxY = (int) Math.floor(estimateY + 1) + 1;
+            maxY = (int) Math.floor(tempEstimateY+ 2) + 1;
             if (maxY > yPoints)
                 maxY = yPoints;
 
@@ -740,11 +753,11 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         Log.d("AZIMUTH", "up, right, down, left: " + upperLimitUp + ", " + upperLimitRight + ", " + upperLimitDown + ", " + upperLimitLeft);
         if (value >= upperLimitLeft && value < upperLimitUp)
             direction = "UP"; //UP
-        if (value >= upperLimitUp && value < upperLimitRight)
+        if ((value >= upperLimitUp && value < 360) || (value >=0 && value< upperLimitRight))
             direction = "RIGHT"; // RIGHT
         if (value >= upperLimitRight && value < upperLimitDown)
             direction = "DOWN"; // DOWN
-        if ((value >= upperLimitDown && value < upperLimitLeft) || (value >= 0 && value < upperLimitLeft))
+        if ((value >= upperLimitDown && value < upperLimitLeft))
             direction = "LEFT"; //LEFT
         Log.d("AZIMUTH", "CHECK determinate retrb: " + direction);
         return direction;
@@ -788,7 +801,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void addToThePreviousCoordinates(Point pt) {
-        if (listOfPreviousCoordinates.size() == 3) {
+        if (listOfPreviousCoordinates.size() == 2) {
             int lastIndex = listOfPreviousCoordinates.size() - 1;
             listOfPreviousCoordinates.remove(lastIndex);
         }
@@ -802,14 +815,16 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
     public int exhibitZone() {
         int exhibit = 0; //none exhibit
-        double error = 0.0;
-        boolean checkFlag = true;
+        double firstError = 0.0;
+        double secondError = 0.0;
+        double thirdError = 0.0;
+        boolean checkFlag = true; // żeby wszystkie punkty w buforze miały mniejszą odległość niż zadana
 
         for (Point pt : listOfPreviousCoordinates) {
-            error = 0.0;
-            error = Math.sqrt(Math.pow(Math.abs(pt.getActualX() - exhibitPoint.getX()), 2)
-                    + Math.pow(Math.abs(pt.getActualY() - exhibitPoint.getY()), 2));
-            if (error > radiusOfCircleArea) checkFlag = false;
+            firstError = 0.0;
+            firstError = Math.sqrt(Math.pow(Math.abs(pt.getActualX() - firstExhibitPoint.getX()), 2)
+                    + Math.pow(Math.abs(pt.getActualY() - firstExhibitPoint.getY()), 2));
+            if (firstError > radiusOfCircleArea) checkFlag = false;
         }
         if (checkFlag) exhibit = 1;
 
