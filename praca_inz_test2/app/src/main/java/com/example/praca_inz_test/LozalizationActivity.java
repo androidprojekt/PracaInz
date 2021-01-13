@@ -654,6 +654,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         addToThePreviousCoordinates(actualPoint);
        // if (exhibitZone() == 1) circleAnim.startAnimation(scaleDown);
         prepareToNewScan();
+        startExhibitAnimation(exhibitZone());
     }
 
     @Override
