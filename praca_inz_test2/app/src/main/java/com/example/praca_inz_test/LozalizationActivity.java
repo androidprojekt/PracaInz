@@ -42,6 +42,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -654,7 +655,10 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         addToThePreviousCoordinates(actualPoint);
        // if (exhibitZone() == 1) circleAnim.startAnimation(scaleDown);
         prepareToNewScan();
-        startExhibitAnimation(exhibitZone());
+        int tempExhibit = exhibitZone();
+        Toast.makeText(getApplicationContext(),"exhibit: "+tempExhibit,Toast.LENGTH_SHORT).show();
+        startExhibitAnimation(tempExhibit);
+
     }
 
     @Override
@@ -859,6 +863,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                 //circleAnim2.startAnimation(scaleDown);
                 break;
             case 3:
+                circleAnim.startAnimation(scaleDown);
                 circleAnim2.startAnimation(scaleDown);
                 break;
             default:
