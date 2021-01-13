@@ -863,7 +863,6 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                 //circleAnim2.startAnimation(scaleDown);
                 break;
             case 3:
-                circleAnim.startAnimation(scaleDown);
                 circleAnim2.startAnimation(scaleDown);
                 break;
             default:

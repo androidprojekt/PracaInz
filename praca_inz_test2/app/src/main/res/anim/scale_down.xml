@@ -3,7 +3,7 @@
 
     <scale
     android:fromXScale="3"
-    android:fromYScale="8"
+    android:fromYScale="3"
     android:toYScale="0"
     android:toXScale="0"
     android:pivotY="50%"
