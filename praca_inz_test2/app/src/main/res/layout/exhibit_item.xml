@@ -31,8 +31,7 @@
                 android:text="Fotel"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/desc"
                 android:layout_below="@id/title"
@@ -44,8 +43,7 @@
                 android:ellipsize="end"
                 android:text="Opis obrazka"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+                android:layout_height="wrap_content" />
 
         </RelativeLayout>
 

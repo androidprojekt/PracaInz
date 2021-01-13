@@ -24,8 +24,6 @@
         android:hint="Podaj swój nick"
         android:background="@drawable/btn_dark_style"
         android:textSize="15sp"/>
-
-
     <EditText
         android:id="@+id/opinionEditTextId"
         android:layout_width="match_parent"
@@ -38,7 +36,6 @@
         android:gravity="left"
         android:layout_margin="10dp"
         android:autofillHints="" />
-
     <Button
         android:id="@+id/sendOpinionBtnId"
         android:layout_width="wrap_content"
@@ -46,9 +43,9 @@
         android:text="dodaj opinię"
         android:layout_gravity="right"
         android:layout_marginRight="10dp"
-        android:background="@drawable/round_button_background">
+        android:background="@drawable/round_button_background"
+        android:layout_marginEnd="10dp">
     </Button>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,7 +62,6 @@
             android:textStyle="bold"
             android:text="Opinie innych użytkowników">
         </TextView>
-
         <ListView
             android:id="@+id/opinionsListView"
             android:layout_width="match_parent"

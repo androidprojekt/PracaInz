@@ -20,62 +20,52 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/imgExhibThumbnailId"
                 android:layout_width="125dp"
                 android:layout_height="170dp"
                 android:background="#2d2d2d"
-                android:id="@+id/imgExhibThumbnailId"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/thumbnail_of_exhibit" />
             <TextView
                 android:id="@+id/txtExhibitNameId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Exhibit Name"
+                android:text="@string/exhibit_name"
                 android:layout_marginTop="10dp"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
-
-
-
             <TextView
                 android:id="@+id/txtExhibitDescId"
                 android:layout_marginTop="10dp"
                 android:textSize="18sp"
-                android:text="Description"
+                android:text="Opis eksponatu..."
                 android:inputType="textMultiLine"
-
                 android:minLines="6"
                 android:gravity="top|left"
                 android:maxLines= "9"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:scrollbars="vertical"
-                />
-<LinearLayout
+                android:scrollbars="vertical" />
+    <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginTop="50dp">
 
-
             <RatingBar
                 android:id="@+id/ratingbar"
                 style="@style/ImageRatingBar"
                 android:layout_width="wrap_content"
-
                 android:layout_height="match_parent"
                 android:numStars="5"
-                android:stepSize="1"
-                />
+                android:stepSize="1" />
             <TextView
                 android:id="@+id/value"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:text="Twoja ocena to: "
-                />
-</LinearLayout>
+                android:text="Twoja ocena to: " />
+    </LinearLayout>
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
-
 </LinearLayout>

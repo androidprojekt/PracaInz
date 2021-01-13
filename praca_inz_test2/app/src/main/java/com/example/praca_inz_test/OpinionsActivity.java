@@ -1,7 +1,6 @@
 package com.example.praca_inz_test;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -13,7 +12,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,28 +19,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.UUID;
+//----------------------------------Activity for adding and displaying opinions---------------------
 
 public class OpinionsActivity extends AppCompatActivity {
 
-    FirebaseDatabase database;
-    DatabaseReference myRef;
-    Button sendOpinionBtn;
-    EditText opinionEditText,nickEditText;
+    private DatabaseReference myRef;
+    private EditText opinionEditText,nickEditText;
     private usersOpinionListAdapter adapter;
     private ArrayList<userOpinion> opinionsList;
-    ListView opinionsLV;
-    long maxid=0;
-    Activity activity = this;
+    private ListView opinionsLV;
+    private long maxId =0;
+    private Activity activity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_opinions);
 
-            database = FirebaseDatabase.getInstance();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
             myRef = database.getReference("Opinions");
-            sendOpinionBtn = findViewById(R.id.sendOpinionBtnId);
+            Button sendOpinionBtn = findViewById(R.id.sendOpinionBtnId);
             opinionEditText = findViewById(R.id.opinionEditTextId);
             nickEditText= findViewById(R.id.nickEditTextId);
             opinionsList = new ArrayList<>();
@@ -56,7 +52,7 @@ public class OpinionsActivity extends AppCompatActivity {
                     opinion.setNickname(nickEditText.getText().toString());
                     opinion.setOpinion(opinionEditText.getText().toString());
 
-                    myRef.child(String.valueOf(maxid)).setValue(opinion);
+                    myRef.child(String.valueOf(maxId)).setValue(opinion);
 
                     Toast.makeText(getApplicationContext(),"Send opinion succefully!",Toast.LENGTH_SHORT).show();
                     opinionEditText.setText("");
@@ -68,8 +64,8 @@ public class OpinionsActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists())
-                        maxid= (dataSnapshot.getChildrenCount());
-                    opinionsList.clear();
+                        maxId = (dataSnapshot.getChildrenCount());
+                        opinionsList.clear();
                     for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren())
                     {
                         userOpinion temp = dataSnapshot1.getValue(userOpinion.class);

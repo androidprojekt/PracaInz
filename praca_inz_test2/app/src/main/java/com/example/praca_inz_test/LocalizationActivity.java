@@ -42,7 +42,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -60,21 +59,23 @@ import java.util.List;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static java.lang.String.valueOf;
+//-------------main functionality of the application - user location estimation---------------------
 
-public class LozalizationActivity extends AppCompatActivity implements SensorEventListener {
+public class LocalizationActivity extends AppCompatActivity implements SensorEventListener {
 
-    NavigationView navigationView;
+    private NavigationView navigationView;
+    private ImageView circleUserAnim;
+    private ImageView circleAnim;
+    private ImageView circleAnim2;
+    private Animation  scaleDown;
+    //private Animation  scaleUp;
+    private Dialog exhibitDialog;
+    private ImageButton exhibit1Btn;
+    //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String EXHIBIT1 = "text";
-    Float loadRateExhibit1 = 0f;
-    Button showUserLocation;
-    ImageView circleUserAnim;
-    ImageView circleAnim;
-    ImageView circleAnim2;
-    Animation scaleUp, scaleDown;
-    Dialog exhibitDialog;
-    ImageButton exhibit1Btn;
-
+    private Float loadRateExhibit1 = 0f;
+    //----------------------------------------------------------------------------------------------
     //------------------------------variables needed to compass-------------------------------------
     static public SensorManager mSensorManager;
     private final float[] accelerometerReading = new float[3];
@@ -83,24 +84,17 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     private final float[] rotationMatrix = new float[9];
     private final float[] orientationAngles = new float[3];
     //----------------------------------------------------------------------------------------------
-
-    //-------------creating variables and objects needed to BLE and WIFI scan-----------------------
-    private BluetoothManager mBluetoothManager;
     private BluetoothLeScanner mBluetoothLeScanner;
-    private BluetoothAdapter mBlueToothAdapter;
     private WifiManager wifiManager;
     private ArrayList<Transmitter> beaconList, wifiList;
     private ArrayList<Point> referencePointList;
     private WifiInfo wifiInfo;
-    private List<ScanFilter> filters;
+    private List<ScanFilter> filters; // filters needed to searching beacons
     private ScanSettings scanSettings;
     private Handler mHandler = new Handler();
     private Boolean startScanBeaconFlag = false;// flag specifying to start collecting measurements (from beacon) after clicking the button
     private Boolean startScanWifiFlag = false; // flag specifying to start collecting measurements (from ap) after clicking the button
     //----------------------------------------------------------------------------------------------
-
-    //----------------------------------------layout------------------------------------------------
-    private Button startLocalization;
     private RelativeLayout mainLayout;
     RelativeLayout.LayoutParams layoutParams, tempParams;
     private ImageView image; //marker on the map
@@ -108,7 +102,6 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     TextView estimateXTv, estimateYTv, nrOfNeighbours;
     Context context;
     //----------------------------------------------------------------------------------------------
-
     //-----------------------------configuration variables------------------------------------------
     int numberOfSamples = 5; // number of needed samples to receive in online phase
     int numberOfBeacons = 3; // beacons in system
@@ -119,10 +112,8 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     int yPoints = 4; // number of Y coordinates
     double percentRangeOfEuclideanDist = 0.2; //percentage of the Euclidean distance range
     //----------------------------------------------------------------------------------------------
-
     //-------------variables needed to determine the direction intervals in compass-----------------
     String direction = "UP"; //default value
-
     /* zuzia pokoj
     int upperLimitUp = 120;
     int upperLimitRight = 210;
@@ -148,24 +139,26 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     JSONObject objectLeftDatabase;
     JSONObject objectRightDatabase;
     //----------------------------------------------------------------------------------------------
-    //---------------------needed to previous Cordinates Bufor--------------------------------------
+    //---------------------needed to previous Coordinates Bufor--------------------------------------
     ArrayList<Point> listOfPreviousCoordinates; //include 3 previous localization
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
-    double radiusOfCircleArea = 1.5;
+    double radiusOfCircleArea = 1.5; // the area in which the exhibit is highlighted
     Point firstExhibitPoint;
     Point secondExhibitPoint;
     Point thirdExhibitPoint;
     ArrayList<Point> listOfExhibits;
-
     //----------------------------------------------------------------------------------------------
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lozalization);
-        overridePendingTransition(R.anim.fade_in, R.anim.fadeout); //moving activity animation
+        setContentView(R.layout.activity_localization);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out); //moving activity animation
+
+        calendar = Calendar.getInstance();
+        simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
 
         //--------------------functionality to sliding option menu----------------------------------
         final DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
@@ -189,19 +182,15 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //------------------------------------------------------------------------------------------
 
         //------------------------------------------COPIED----------------------------------------------
-        showUserLocation = findViewById(R.id.showUserLocationBtnId);
         circleUserAnim = findViewById(R.id.imgUserAnimation);
-
         circleAnim = findViewById(R.id.imgAmnimation1);
         circleAnim2 = findViewById(R.id.imgAmnimation2);
-        scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
+        //scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
 
         exhibitDialog = new Dialog(this);
         exhibit1Btn = findViewById(R.id.exhibit1BtnId);
 
-        calendar = Calendar.getInstance();
-        simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
         listOfPreviousCoordinates = new ArrayList<>();
 
         firstExhibitPoint = new Point(6, 3, 0);
@@ -212,11 +201,9 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         listOfExhibits.add(firstExhibitPoint);
         listOfExhibits.add(secondExhibitPoint);
         listOfExhibits.add(thirdExhibitPoint);
-
-
         //-----------------------------------------VIEWS--------------------------------------------
         context = getApplicationContext();
-        startLocalization = findViewById(R.id.startLocalizationBtnId);
+        //----------------------------------------layout------------------------------------------------
         estimateXTv = findViewById(R.id.estimateOfXId);
         estimateYTv = findViewById(R.id.estimateOfYId);
         nrOfNeighbours = findViewById(R.id.numberOfNeighbours);
@@ -224,6 +211,8 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         image = findViewById(R.id.imageView);
         layoutParams = (RelativeLayout.LayoutParams) mainLayout.getLayoutParams();
         directionCompassTv = findViewById(R.id.directionCompassId);
+        Button showUserLocation = findViewById(R.id.showUserLocationBtnId);
+        Button startLocalization = findViewById(R.id.startLocalizationBtnId);
         //------------------------------------------------------------------------------------------
 
         //------------------------------------------Sensor------------------------------------------
@@ -231,8 +220,9 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //------------------------------------------------------------------------------------------
 
         //--------------------------------initializing BLE and WIFI---------------------------------
-        mBluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-        mBlueToothAdapter = BluetoothAdapter.getDefaultAdapter();
+        //-------------creating variables and objects needed to BLE and WIFI scan-----------------------
+        BluetoothManager mBluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+        BluetoothAdapter mBlueToothAdapter = BluetoothAdapter.getDefaultAdapter();
         mBluetoothLeScanner = mBlueToothAdapter.getBluetoothLeScanner(); // new solution for scanning
         wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         beaconList = new ArrayList<>();
@@ -247,7 +237,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //------------------------------------------------------------------------------------------
 
         //-------------------------PERMISSIONS-------------------------------
-        ActivityCompat.requestPermissions(LozalizationActivity.this,
+        ActivityCompat.requestPermissions(LocalizationActivity.this,
                 new String[]{Manifest.permission.BLUETOOTH,
                         Manifest.permission.BLUETOOTH_ADMIN,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -329,7 +319,6 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         maxY = yPoints;
         firstRun = true;
         //--------------------------------------END OF ONCREATE--------------------------------------------
-
     }
 
     public void goToOptionMenuItem(Integer id) {
@@ -344,7 +333,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     @Override
     protected void onPause() {
         super.onPause();
-        overridePendingTransition(R.anim.fade_in, R.anim.fadeout);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
     @Override
@@ -458,7 +447,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                         boolean newBeacon = true;
                         if (beaconList.size() != 0) { //if there is any beacon on the list
                             for (Transmitter transmitter : beaconList) {
-                                if (transmitter.getMacAdress().contains(result.getDevice().getAddress())) {
+                                if (transmitter.getMacAddress().contains(result.getDevice().getAddress())) {
                                     //If beacon from scan result exist on the beacon list
                                     newBeacon = false;
                                     if (transmitter.isSavingSamples()) {
@@ -490,8 +479,8 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                         startScanBeaconFlag = false;
                         if (finishedWifiIterator == numberOfWifi) {
                             startScanWifiFlag = false;
-                            beaconList.sort(new beaconSorter()); // list of sorted euclidean distances with x,y cordinates
 
+                            beaconList.sort(new beaconSorter()); // list of sorted euclidean distances with x,y cordinates
                             for (int i = beaconList.size(); i > numberOfBeacons; i--)
                             //removing beacons from the list above the set value
                             {
@@ -502,7 +491,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                             finishedWifiIterator = 0;
 
                             try {
-                                //Toast.makeText(getApplicationContext(), "succes ", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplicationContext(), "success ", Toast.LENGTH_SHORT).show();
                                 estimatePositions();
                             } catch (JSONException e) {
                                 //Toast.makeText(getApplicationContext(), "exc", Toast.LENGTH_SHORT).show();
@@ -572,7 +561,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                 tempTab.add(tempCalculation);
 
                 for (Transmitter beacon : beaconList) {
-                    String databaseBeaconRssiTemp = tempPoint.getString(beacon.getMacAdress()); // from database
+                    String databaseBeaconRssiTemp = tempPoint.getString(beacon.getMacAddress()); // from database
                     double databaseBeaconRssi = Double.parseDouble(databaseBeaconRssiTemp); //from database
                     double actualBeaconRssi = beacon.getAverage(); //actual
                     tempCalculation = Math.pow((databaseBeaconRssi - actualBeaconRssi), 2);
@@ -656,7 +645,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
        // if (exhibitZone() == 1) circleAnim.startAnimation(scaleDown);
         prepareToNewScan();
         int tempExhibit = exhibitZone();
-        Toast.makeText(getApplicationContext(),"exhibit: "+tempExhibit,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"exhibit: "+tempExhibit,Toast.LENGTH_SHORT).show();
         startExhibitAnimation(tempExhibit);
 
     }
@@ -878,7 +867,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
         RatingBar ratingBar;
         ratingBar = exhibitDialog.findViewById(R.id.ratingBar);
-        loadDataFromSharedPrefecences(); //load user rate
+        loadDataFromSharedPreferences(); //load user rate
         ratingBar.setRating(loadRateExhibit1); //set user rate
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -903,7 +892,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
     }
 
-    public void loadDataFromSharedPrefecences() {
+    public void loadDataFromSharedPreferences() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         loadRateExhibit1 = sharedPreferences.getFloat(EXHIBIT1, 0);
     }

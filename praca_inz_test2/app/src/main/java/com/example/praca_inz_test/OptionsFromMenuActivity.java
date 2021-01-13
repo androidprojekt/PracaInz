@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+//------------------the activity used to move between options in a menu-----------------------------
+
 
 public class OptionsFromMenuActivity extends AppCompatActivity {
 
@@ -17,7 +19,7 @@ public class OptionsFromMenuActivity extends AppCompatActivity {
 
         //------------------------------------------------------------------------------------------
         Intent receivedIntent = getIntent();
-        Integer optionType=receivedIntent.getIntExtra("OPTION_ID",0);
+        int optionType=receivedIntent.getIntExtra("OPTION_ID",0);
         //  1--> menuExhibition
         //  2--> menuInformation
         //  3--> menuOpinions
@@ -25,37 +27,31 @@ public class OptionsFromMenuActivity extends AppCompatActivity {
         //  5--> menuLogout
         //------------------------------------------------------------------------------------------
 
-        Fragment fragment=null;
+        Fragment fragment;
         switch(optionType)
         {
             case 1:
-                //fragment = new exhibitionFragment();
-                //loadFragment(fragment);
-                Intent goToMenuIntent;
-                goToMenuIntent = new Intent(getApplicationContext(),listOfExhibitsActivity.class);
-                startActivity(goToMenuIntent);
+                Intent goToExhibitionIntent;
+                goToExhibitionIntent = new Intent(getApplicationContext(), ListOfExhibitsActivity.class);
+                startActivity(goToExhibitionIntent);
                 break;
             case 2:
-                fragment = new InformationsFragment();
+                fragment = new informationsFragment();
                 loadFragment(fragment);
                 break;
             case 3:
                 Intent goToOpinionsIntent;
                 goToOpinionsIntent = new Intent(getApplicationContext(),OpinionsActivity.class);
                 startActivity(goToOpinionsIntent);
-                //fragment = new opinionsFragment();
-                //loadFragment(fragment);
                 break;
             case 4:
                 fragment = new aboutUsFragment();
                 loadFragment(fragment);
                 break;
             case 5:
-
-                //
+                // Log out from app
                 break;
             default:
-
         }
 
     }

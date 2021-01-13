@@ -26,21 +26,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".instructionActivity"
+        <activity android:name=".InstructionActivity"
             android:noHistory="true"/>
         <activity android:name=".OpinionsActivity" />
         <activity
             android:name=".ExhibitActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".listOfExhibitsActivity"
+            android:name=".ListOfExhibitsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".OptionsFromMenuActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LozalizationActivity"
+            android:name=".LocalizationActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ExhibitionActivity"

@@ -1,20 +1,16 @@
 package com.example.praca_inz_test;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class instructionActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+//-------------an activity that displays instructions for a localization activity-------------------
 
-    private ViewPager mSlideViewPager;
-    private SliderAdapter sliderAdapter;
+public class InstructionActivity extends AppCompatActivity {
+
     private LinearLayout mDotLayout;
-    private TextView[] mDots;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,20 +18,15 @@ public class instructionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_instruction);
 
         mDotLayout = (LinearLayout) findViewById(R.id.dotsLayout);
-
-        mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
-        sliderAdapter = new SliderAdapter(getApplicationContext());
+        ViewPager mSlideViewPager = (ViewPager) findViewById(R.id.slideViewPager);
+        SliderAdapter sliderAdapter = new SliderAdapter(getApplicationContext());
         mSlideViewPager.setAdapter(sliderAdapter);
-
-
         addDotsIndicator(0);
         mSlideViewPager.addOnPageChangeListener(viewListener);
-
-
     }
 
     public void addDotsIndicator(int position) {
-        mDots = new TextView[4];
+        TextView[] mDots = new TextView[4];
         mDotLayout.removeAllViews();
 
         for (int i = 0; i < mDots.length; i++) {
@@ -47,12 +38,8 @@ public class instructionActivity extends AppCompatActivity {
             mDotLayout.addView(mDots[i]);
         }
 
-        if (mDots.length > 0) {
-            mDots[position].setTextColor(getResources().getColor(R.color.darkGray));
-            mDots[position].setTextSize(55);
-        }
-
-
+        mDots[position].setTextColor(getResources().getColor(R.color.darkGray));
+        mDots[position].setTextSize(55);
     }
 
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {

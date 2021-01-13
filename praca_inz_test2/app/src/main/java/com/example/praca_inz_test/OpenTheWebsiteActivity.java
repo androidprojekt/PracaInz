@@ -1,24 +1,23 @@
 package com.example.praca_inz_test;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.WindowManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+//----------------------activity displaying the museum website--------------------------------------
+
 public class OpenTheWebsiteActivity extends AppCompatActivity {
 
-    private WebView webView;
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_the_website);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        webView = new WebView(this);
+        WebView webView = new WebView(this);
         webView.getSettings().setJavaScriptEnabled(true);
         final Activity activity=this;
         webView.setWebViewClient(new WebViewClient(){
@@ -35,6 +34,6 @@ public class OpenTheWebsiteActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        overridePendingTransition(R.anim.fade_in, R.anim.fadeout);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

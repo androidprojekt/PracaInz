@@ -8,24 +8,23 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
+//---------------------------Activity displaying exhibits in the hall-------------------------------
 
-public class listOfExhibitsActivity extends AppCompatActivity {
-
-    List<Exhibit> lstExhibit;
+public class ListOfExhibitsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_exhibits);
 
-        lstExhibit = new ArrayList<>();
+        List<Exhibit> lstExhibit = new ArrayList<>();
         lstExhibit.add(new Exhibit("Fotel",getString(R.string.exhibExampleDesc),R.drawable.pic1));
         lstExhibit.add(new Exhibit("Waza",getString(R.string.exhibExampleDesc),R.drawable.pic2));
         lstExhibit.add(new Exhibit("Kielich",getString(R.string.exhibExampleDesc),R.drawable.pic3));
         lstExhibit.add(new Exhibit("Dywan",getString(R.string.exhibExampleDesc),R.drawable.pic4));
 
         RecyclerView myrv = findViewById(R.id.recyclerview_id);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,lstExhibit);
+        RecyclerViewExhibitsAdapter myAdapter = new RecyclerViewExhibitsAdapter(this, lstExhibit);
         myrv.setLayoutManager(new GridLayoutManager(this,2));
         myrv.setAdapter(myAdapter);
 

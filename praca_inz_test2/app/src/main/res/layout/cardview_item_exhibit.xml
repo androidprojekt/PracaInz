@@ -22,8 +22,6 @@
         android:layout_height="160dp"
         android:scaleType="centerCrop"
         android:background="#2d2d2d"/>
-
-
     <TextView
         android:id="@+id/exhibit_name_id"
         android:textColor="#2d2d2d"

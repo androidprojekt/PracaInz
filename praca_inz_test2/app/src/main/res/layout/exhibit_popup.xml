@@ -30,9 +30,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/pic2"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp">
-        </ImageView>
-
+            android:layout_marginTop="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,8 +38,7 @@
             android:textStyle="bold"
             android:textColor="#fff"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp">
-        </TextView>
+            android:layout_marginTop="5dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,8 +46,7 @@
             android:textStyle="bold"
             android:textColor="#fff"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp">
-        </TextView>
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 
     <Button
@@ -62,9 +58,7 @@
         android:layout_marginTop="60dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/transparent_btn_style"
-        android:textColor="#fff">
-    </Button>
-
+        android:textColor="#fff"/>
     <RatingBar
         android:id="@+id/ratingBar"
         style="@style/ImageRatingBar"
@@ -80,9 +74,8 @@
         android:text="Oceń eksponat!"
         android:textColor="#fff"
         android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        >
-    </TextView>
+        android:layout_gravity="center_horizontal"/>
+
 
 
 </LinearLayout>

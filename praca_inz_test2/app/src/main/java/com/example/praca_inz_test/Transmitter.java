@@ -1,18 +1,19 @@
 package com.example.praca_inz_test;
 
 import java.util.ArrayList;
+//------------------class that specifies signal-transmitting objects--------------------------------
 
 public class Transmitter {
 
-    String macAdress;
-    String lastUpdate;
-    String type;
-    String name;
-    double average;
-    int rssi;
-    boolean savingSamples;
-    ArrayList<Integer> samplesTab;
-    int samplesIterator;
+    private String macAddress;
+    private String lastUpdate;
+    private String type; //beacon or access point
+    private String name; //name of WiFi
+    private double average; //average value of received samples
+    private int rssi;
+    private boolean savingSamples; //still saving samples or no
+    private ArrayList<Integer> samplesTab;
+    private int samplesIterator;
 
     //--------------iterators needed to determine direction from database---------------
     int directionIteratorUp;
@@ -22,8 +23,8 @@ public class Transmitter {
     //-----------------------------------------------------------------------------------
 
 
-    public Transmitter(String macAdress, int rssi, String type) {
-        this.macAdress = macAdress;
+    public Transmitter(String macAddress, int rssi, String type) {
+        this.macAddress = macAddress;
         this.rssi = rssi;
         this.type = type;
         this.name = "default";
@@ -38,9 +39,8 @@ public class Transmitter {
     }
 
 
-    public Transmitter(String macAdress, int rssi, String type, String name) {
-        this.macAdress = macAdress;
-        this.lastUpdate = lastUpdate;
+    public Transmitter(String macAddress, int rssi, String type, String name) {
+        this.macAddress = macAddress;
         this.rssi = rssi;
         this.type = type;
         this.name = name;
@@ -60,10 +60,6 @@ public class Transmitter {
 
     public ArrayList<Integer> getSamplesTab() {
         return samplesTab;
-    }
-
-    public void setSamplesTab(ArrayList<Integer> samplesTab) {
-        this.samplesTab = samplesTab;
     }
 
     public void clearTheSamplesTab() {
@@ -86,16 +82,8 @@ public class Transmitter {
         this.name = name;
     }
 
-    public String getMacAdress() {
-        return macAdress;
-    }
-
-    public void setMacAdress(String macAdress) {
-        this.macAdress = macAdress;
-    }
-
-    public String getLastUpdate() {
-        return lastUpdate;
+    public String getMacAddress() {
+        return macAddress;
     }
 
     public void setLastUpdate(String name) {

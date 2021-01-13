@@ -32,6 +32,9 @@
     <string name="klikniecie">- kliknij na dany eksponat na mapce, aby dowiedzieć się więcej</string>
     <string name="znajdz_mnie">- naciśnij przycisk „Znajdź mnie”, aby wyświetlić swoją lokalizację na mapie sali muzealnej</string>
     <string name="wyraz_opinie">- możesz ocenić eksponat, a także napisać swoją opinię sięgając do zakładki Opinie</string>
+    <string name="kim_jestesmy2">Kim jesteśmy</string>
+    <string name="thumbnail_of_exhibit">Thumbnail of exhibit</string>
+    <string name="exhibit_name">Exhibit Name</string>
 
     <string-array name="exhibitions">
         <item>Item1</item>

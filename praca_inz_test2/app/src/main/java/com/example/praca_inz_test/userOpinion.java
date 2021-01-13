@@ -8,11 +8,6 @@ public class userOpinion {
     public userOpinion() {
     }
 
-    public userOpinion(String nickname, String opinion) {
-        this.nickname = nickname;
-        this.opinion = opinion;
-    }
-
     public String getNickname() {
         return nickname;
     }

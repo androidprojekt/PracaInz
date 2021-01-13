@@ -1,15 +1,12 @@
 package com.example.praca_inz_test;
 
 
-//class specifying individual exhibits in the listOfExhibitsTab-------------------------------------
+//--------------class specifying individual exhibits in the listOfExhibitsTab-----------------------
 public class Exhibit {
 
     private String exhibitName;
     private String description;
     private int Thumbnail;
-
-    public Exhibit() {
-    }
 
     public Exhibit(String exhibitName, String description, int thumbnail) {
         this.exhibitName = exhibitName;

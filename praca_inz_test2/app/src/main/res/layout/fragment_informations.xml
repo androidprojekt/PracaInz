@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InformationsFragment">
+    tools:context=".informationsFragment">
 
   <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
@@ -27,8 +27,7 @@
                   android:text="@string/jak_dziala"
                   android:textColor="#000"
                   android:textStyle="bold"
-                  android:textSize="30sp">
-              </TextView>
+                  android:textSize="30sp"/>
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
@@ -36,10 +35,10 @@
                   android:textColor="#000"
                   android:textSize="18sp"
                   android:layout_marginTop="15dp"
-                  android:layout_marginLeft="7dp"
-                  >
-              </TextView>
+                  android:layout_marginLeft="7dp"/>
+
           </LinearLayout>
+
           <LinearLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
@@ -51,61 +50,48 @@
                   android:layout_height="wrap_content"
                   android:text="@string/funkcje"
                   android:textSize="18sp"
-                  android:layout_margin="7dp">
-              </TextView>
+                  android:layout_margin="7dp"/>
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/podejcie"
                   android:textSize="18sp"
-                  android:layout_margin="7dp">
-              </TextView>
-
+                  android:layout_margin="7dp"/>
               <ImageView
                   android:layout_width="120dp"
                   android:layout_height="120dp"
                   android:src="@drawable/podejdz_image_info"
                   android:layout_gravity="center"/>
-
-
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/klikniecie"
                   android:textSize="18sp"
                   android:layout_marginTop="15dp"
-                  android:layout_margin="5dp">
-              </TextView>
-
+                  android:layout_margin="5dp"/>
               <ImageView
                   android:layout_width="120dp"
                   android:layout_height="120dp"
                   android:src="@drawable/click_image_info"
                   android:layout_gravity="center"/>
-
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/wyraz_opinie"
                   android:textSize="18sp"
-                  android:layout_margin="7dp">
-              </TextView>
-
+                  android:layout_margin="7dp"/>
               <ImageView
                   android:layout_width="110dp"
                   android:layout_height="110dp"
                   android:src="@drawable/ocena_image_info"
                   android:layout_gravity="center"/>
-
               <TextView
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:text="@string/znajdz_mnie"
                   android:textSize="18sp"
                   android:layout_marginTop="15dp"
-                  android:layout_margin="7dp">
-              </TextView>
-
+                  android:layout_margin="7dp"/>
               <ImageView
                   android:layout_width="120dp"
                   android:layout_height="120dp"
@@ -113,11 +99,6 @@
                   android:layout_gravity="center"/>
 
           </LinearLayout>
-
       </LinearLayout>
-
-
-
   </androidx.core.widget.NestedScrollView>
-
 </FrameLayout>

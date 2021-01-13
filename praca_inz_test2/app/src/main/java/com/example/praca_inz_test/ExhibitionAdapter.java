@@ -12,13 +12,12 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.List;
 
-//-----the class needed for the correct display of exhibits in the exhibits tab---------------------
-public class Adapter extends PagerAdapter {
+//-----------the class needed for the correct display of exhibits in the exhibits activity----------
+public class ExhibitionAdapter extends PagerAdapter {
     private List<Model> models;
-    private LayoutInflater layoutInflater;
     private Context context;
 
-    public Adapter(List<Model> models, Context context) {
+    public ExhibitionAdapter(List<Model> models, Context context) {
         this.models = models;
         this.context = context;
     }
@@ -36,12 +35,12 @@ public class Adapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = layoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.item,container,false);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        View view = layoutInflater.inflate(R.layout.exhibit_item,container,false);
         ImageView imageView;
         TextView title,desc;
-        imageView=view.findViewById(R.id.image);
-        title=view.findViewById(R.id.title);
+        imageView = view.findViewById(R.id.image);
+        title = view.findViewById(R.id.title);
         desc = view.findViewById(R.id.desc);
 
         imageView.setImageResource(models.get(position).getImage());

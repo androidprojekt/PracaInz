@@ -46,7 +46,8 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:focusable="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -59,11 +60,8 @@
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
                     android:background="#000000"
                     app:srcCompat="@drawable/book_icon" />
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -102,8 +100,6 @@
                     android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
                     app:srcCompat="@drawable/location_icon" />
 
                 <TextView
@@ -131,7 +127,8 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:focusable="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -144,8 +141,6 @@
                     android:id="@+id/imageView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="1"
                     app:srcCompat="@drawable/exhibition_icon" />
 
                 <TextView
@@ -173,7 +168,8 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
             android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground"
+            android:focusable="true">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -186,8 +182,6 @@
                     android:id="@+id/imageView6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="1"
                     app:srcCompat="@drawable/website_icon" />
 
                 <TextView
@@ -200,7 +194,6 @@
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
     </GridLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -5,16 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 
 public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.fade_in, R.anim.fadeout);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         setContentView(R.layout.activity_main_menu);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     public void goToAboutMethod(View view) {
@@ -36,13 +34,13 @@ public class MainMenuActivity extends AppCompatActivity {
     }
     public void goToLocalizationMethod(View view) {
         Intent goToLocalizationMethod;
-        goToLocalizationMethod = new Intent(getApplicationContext(),instructionActivity.class);
+        goToLocalizationMethod = new Intent(getApplicationContext(), InstructionActivity.class);
         startActivity(goToLocalizationMethod);
     }
     @Override
     protected void onPause() {
         super.onPause();
-        overridePendingTransition(R.anim.fade_in, R.anim.fadeout);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
 

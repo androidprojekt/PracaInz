@@ -1,7 +1,8 @@
 package com.example.praca_inz_test;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,16 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 
 public class usersOpinionListAdapter extends ArrayAdapter<userOpinion> {
     private Context mContext;
     int mResource;
-    private static final String TAG = "BeaconListAdapter";
 
     public usersOpinionListAdapter(Context context, int resource, List<userOpinion> objects) {
         super(context, resource, objects);
@@ -24,11 +28,13 @@ public class usersOpinionListAdapter extends ArrayAdapter<userOpinion> {
     }
 
 
+    @SuppressLint("ViewHolder")
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        String nick= getItem(position).getNickname();
-        String opinion = getItem(position).getOpinion();
+    public View getView(int position, View convertView, @NotNull ViewGroup parent) {
+        String nick= Objects.requireNonNull(getItem(position)).getNickname();
+        String opinion = Objects.requireNonNull(getItem(position)).getOpinion();
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);

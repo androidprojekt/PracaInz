@@ -9,10 +9,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import org.jetbrains.annotations.NotNull;
 
 public class SliderAdapter extends PagerAdapter {
 
@@ -50,13 +51,11 @@ public class SliderAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-
         return slide_Headings.length;
-
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NotNull View view, @NotNull Object object) {
         return (view == (LinearLayout)object);
     }
 
@@ -68,9 +67,8 @@ public class SliderAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.slide_layout,container,false);
-        LinearLayout layoutSlide = (LinearLayout) view.findViewById(R.id.slidelinearLayout);
 
         button = view.findViewById(R.id.button);
 
@@ -89,7 +87,7 @@ public class SliderAdapter extends PagerAdapter {
                 @Override
                 public void onClick(View view) {
 
-                    Intent intent = new Intent(context,LozalizationActivity.class)
+                    Intent intent = new Intent(context, LocalizationActivity.class)
                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }

@@ -12,17 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewExhibitsAdapter extends RecyclerView.Adapter<RecyclerViewExhibitsAdapter.MyViewHolder> {
 
 
     private Context mContext;
     private List<Exhibit> mData;
 
-    public RecyclerViewAdapter(Context mContext, List<Exhibit> mData) {
+    public RecyclerViewExhibitsAdapter(Context mContext, List<Exhibit> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
