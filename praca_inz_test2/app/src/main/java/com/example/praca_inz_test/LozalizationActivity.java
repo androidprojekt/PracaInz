@@ -114,8 +114,8 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     int numberOfWifi = 1;    // number of AP's
     int finishedBeaconsIterator = 0; //variable that determines whether the measurements have been collected from beacons
     int finishedWifiIterator = 0; //variable that determines whether the measurements have been collected from wifi
-    int xPoints = 8; // number of X coordinates
-    int yPoints = 5; // number of Y coordinates
+    int xPoints = 4; // number of X coordinates
+    int yPoints = 4; // number of Y coordinates
     double percentRangeOfEuclideanDist = 0.2; //percentage of the Euclidean distance range
     //----------------------------------------------------------------------------------------------
 
@@ -379,7 +379,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         //reading the main database file
         String json = null;
         try {
-            InputStream is = getAssets().open("polanka_final.json");
+            InputStream is = getAssets().open("zuzia_pokoj_final.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -539,6 +539,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
                 Log.d("test123", ": " + str);
 
                 JSONObject tempPoint;
+
                 switch (sumOfDirectionIterators()) {
                     case "UP":
                         tempPoint = objectUpDatabase.getJSONObject(str);
