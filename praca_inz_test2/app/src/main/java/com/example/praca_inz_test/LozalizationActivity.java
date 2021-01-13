@@ -835,7 +835,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         int exhibitIterator=1;
 
         for (Point exhibitPoint : listOfExhibits) {
-
+            checkFlag = true;
             for (Point pt : listOfPreviousCoordinates) {
                 error = 0.0;
                 error = Math.sqrt(Math.pow(Math.abs(pt.getActualX() - exhibitPoint.getX()), 2)
