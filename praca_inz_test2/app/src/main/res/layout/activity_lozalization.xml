@@ -85,6 +85,24 @@
                 android:layout_marginTop="77dp"
                 android:onClick="showExhibitPopUp"
                 app:srcCompat="@android:drawable/btn_star" />
+            <ImageView
+                android:id="@+id/imgAmnimation2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                android:layout_marginLeft="95dp"
+                android:layout_marginTop="237dp"
+                android:src="@drawable/circle"
+                />
+            <ImageButton
+                android:id="@+id/exhibit2BtnId"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="95dp"
+                android:layout_marginTop="237dp"
+                android:onClick="showExhibitPopUp"
+                app:srcCompat="@android:drawable/btn_star" />
+
         </RelativeLayout>
 
         <RelativeLayout

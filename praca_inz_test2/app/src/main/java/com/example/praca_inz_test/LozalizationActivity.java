@@ -69,6 +69,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     Button showUserLocation;
     ImageView circleUserAnim;
     ImageView circleAnim;
+    ImageView circleAnim2;
     Animation scaleUp, scaleDown;
     Dialog exhibitDialog;
     ImageButton exhibit1Btn;
@@ -150,10 +151,11 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
     ArrayList<Point> listOfPreviousCoordinates; //include 3 previous localization
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
-    double radiusOfCircleArea = 2;
+    double radiusOfCircleArea = 1.5;
     Point firstExhibitPoint;
     Point secondExhibitPoint;
     Point thirdExhibitPoint;
+    ArrayList<Point> listOfExhibits;
 
     //----------------------------------------------------------------------------------------------
 
@@ -190,6 +192,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         circleUserAnim = findViewById(R.id.imgUserAnimation);
 
         circleAnim = findViewById(R.id.imgAmnimation1);
+        circleAnim2 = findViewById(R.id.imgAmnimation2);
         scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
 
@@ -199,9 +202,15 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
         listOfPreviousCoordinates = new ArrayList<>();
+
         firstExhibitPoint = new Point(6, 3, 0);
         secondExhibitPoint = new Point(4, 1, 0);
-        thirdExhibitPoint = new Point(0, 3, 0);
+        thirdExhibitPoint = new Point(2, 2, 0);
+
+        listOfExhibits = new ArrayList<>();
+        listOfExhibits.add(firstExhibitPoint);
+        listOfExhibits.add(secondExhibitPoint);
+        listOfExhibits.add(thirdExhibitPoint);
 
 
         //-----------------------------------------VIEWS--------------------------------------------
@@ -619,7 +628,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
         //-------------------moving the arrow across the room map-----------------------------------
         layoutParams = (RelativeLayout.LayoutParams) mainLayout.getLayoutParams();
-        Log.d("Params", "width "+layoutParams.width+", height "+layoutParams.height);
+        Log.d("Params", "width " + layoutParams.width + ", height " + layoutParams.height);
 
         int leftMarginToAdd = (int) (estimateY * 100 * 1.2);
         int bottomMarginToAdd = (int) (estimateX * 100 * 1.2);
@@ -642,7 +651,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         // call method which adding to the list
         //----------------------------------------
         addToThePreviousCoordinates(actualPoint);
-        if (exhibitZone() == 1) circleAnim.startAnimation(scaleDown);
+       // if (exhibitZone() == 1) circleAnim.startAnimation(scaleDown);
         prepareToNewScan();
     }
 
@@ -666,7 +675,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         // "orientationAngles" now has up-to-date information.
         azimuth = (int) Math.toDegrees(orientationAngles[0]);
         azimuth = (azimuth + 360) % 360;
-        image.setRotation(azimuth-280); // trzeba edytowac
+        image.setRotation(azimuth - 280); // trzeba edytowac
         directionCompassTv.setText("Direction value: " + azimuth + "°");
     }
 
@@ -732,13 +741,13 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
             minX = (int) Math.ceil(tempEstimateX - 2);
             if (minX < 0)
                 minX = 0;
-            maxX = (int) Math.floor(tempEstimateX+ 2) + 1;
+            maxX = (int) Math.floor(tempEstimateX + 2) + 1;
             if (maxX > xPoints)
                 maxX = xPoints;
             minY = (int) Math.ceil(tempEstimateY - 2);
             if (minY < 0)
                 minY = 0;
-            maxY = (int) Math.floor(tempEstimateY+ 2) + 1;
+            maxY = (int) Math.floor(tempEstimateY + 2) + 1;
             if (maxY > yPoints)
                 maxY = yPoints;
 
@@ -753,7 +762,7 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
         Log.d("AZIMUTH", "up, right, down, left: " + upperLimitUp + ", " + upperLimitRight + ", " + upperLimitDown + ", " + upperLimitLeft);
         if (value >= upperLimitLeft && value < upperLimitUp)
             direction = "UP"; //UP
-        if ((value >= upperLimitUp && value < 360) || (value >=0 && value< upperLimitRight))
+        if ((value >= upperLimitUp && value < 360) || (value >= 0 && value < upperLimitRight))
             direction = "RIGHT"; // RIGHT
         if (value >= upperLimitRight && value < upperLimitDown)
             direction = "DOWN"; // DOWN
@@ -815,23 +824,46 @@ public class LozalizationActivity extends AppCompatActivity implements SensorEve
 
     public int exhibitZone() {
         int exhibit = 0; //none exhibit
-        double firstError = 0.0;
-        double secondError = 0.0;
-        double thirdError = 0.0;
+        double error = 0.0;
         boolean checkFlag = true; // żeby wszystkie punkty w buforze miały mniejszą odległość niż zadana
+        int exhibitIterator=1;
 
-        for (Point pt : listOfPreviousCoordinates) {
-            firstError = 0.0;
-            firstError = Math.sqrt(Math.pow(Math.abs(pt.getActualX() - firstExhibitPoint.getX()), 2)
-                    + Math.pow(Math.abs(pt.getActualY() - firstExhibitPoint.getY()), 2));
-            if (firstError > radiusOfCircleArea) checkFlag = false;
+        for (Point exhibitPoint : listOfExhibits) {
+
+            for (Point pt : listOfPreviousCoordinates) {
+                error = 0.0;
+                error = Math.sqrt(Math.pow(Math.abs(pt.getActualX() - exhibitPoint.getX()), 2)
+                        + Math.pow(Math.abs(pt.getActualY() - exhibitPoint.getY()), 2));
+                if (error > radiusOfCircleArea) checkFlag = false;
+            }
+            if (checkFlag) exhibit = exhibitIterator;
+
+            exhibitIterator++;
         }
-        if (checkFlag) exhibit = 1;
-
-
         return exhibit;
     }
 
+
+    public void startExhibitAnimation(int exhibit)
+    {
+        switch (exhibit) {
+            case 0:
+                //nothing
+                break;
+            case 1:
+                circleAnim.startAnimation(scaleDown);
+                break;
+            case 2:
+                //circleAnim2.startAnimation(scaleDown);
+                break;
+            case 3:
+                circleAnim2.startAnimation(scaleDown);
+                break;
+            default:
+                //nothing
+        }
+
+    }
     public void showExhibitPopUp(View v) {
         TextView txtClose;
         exhibitDialog.setContentView(R.layout.exhibit_popup);
