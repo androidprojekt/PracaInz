@@ -9,7 +9,7 @@
     android:layout_gravity="center">
 
     <TextView
-        android:id="@+id/txtCloseId"
+        android:id="@+id/txtClose03Id"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:textColor="#fff"
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eksponat testowy"
+            android:text="Eksponat testowy 03"
             android:textStyle="bold"
             android:textColor="#fff"
             android:layout_gravity="center_horizontal"
@@ -60,7 +60,7 @@
         android:background="@drawable/transparent_btn_style"
         android:textColor="#fff"/>
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/ratingBar03"
         style="@style/ImageRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

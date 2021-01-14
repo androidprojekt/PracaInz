@@ -57,6 +57,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.Manifest.permission.EXPAND_STATUS_BAR;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static java.lang.String.valueOf;
 //-------------main functionality of the application - user location estimation---------------------
@@ -73,8 +74,12 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     int nrOfStrongestBeacons =2;
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String EXHIBIT1 = "text";
-    private Float loadRateExhibit1 = 0f;
+    public static final String EXHIBIT63 = "textExhibit63";
+    public static final String EXHIBIT41 = "textExhibit41";
+    public static final String EXHIBIT03 = "textExhibit03";
+    private float loadRateExhibit63 = 0f;
+    private float loadRateExhibit41=0f;
+    private float loadRateExhibit03=0f;
     //----------------------------------------------------------------------------------------------
     //------------------------------variables needed to compass-------------------------------------
     static public SensorManager mSensorManager;
@@ -891,23 +896,87 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         }
 
     }
-    public void showExhibitPopUp(View v) {
+    public void showExhibit63PopUp(View v) {
         TextView txtClose;
-        exhibitDialog.setContentView(R.layout.exhibit_popup);
-        txtClose = exhibitDialog.findViewById(R.id.txtCloseId);
+        exhibitDialog.setContentView(R.layout.exhibit63_popup);
+        txtClose = exhibitDialog.findViewById(R.id.txtClose63Id);
         Button buttonInDialog = exhibitDialog.findViewById(R.id.buttonFromDialog1Id);
 
         RatingBar ratingBar;
-        ratingBar = exhibitDialog.findViewById(R.id.ratingBar);
-        loadDataFromSharedPreferences(); //load user rate
-        ratingBar.setRating(loadRateExhibit1); //set user rate
+        ratingBar = exhibitDialog.findViewById(R.id.ratingBar63);
+        loadDataFromSharedPreferences(EXHIBIT63); //load user rate
+        ratingBar.setRating(loadRateExhibit63); //set user rate
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float myRating, boolean fromUser) {
                 SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 float myRate = ratingBar.getRating();
-                editor.putFloat(EXHIBIT1, myRate);
+                editor.putFloat(EXHIBIT63, myRate);
+                editor.apply();
+            }
+        });
+
+        //comment
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exhibitDialog.dismiss();
+            }
+        });
+        exhibitDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        exhibitDialog.show();
+
+    }
+    public void showExhibit41PopUp(View v) {
+        TextView txtClose;
+        exhibitDialog.setContentView(R.layout.exhibit41_popup);
+        txtClose = exhibitDialog.findViewById(R.id.txtClose41Id);
+        Button buttonInDialog = exhibitDialog.findViewById(R.id.buttonFromDialog1Id);
+
+        RatingBar ratingBar;
+        ratingBar = exhibitDialog.findViewById(R.id.ratingBar41);
+        loadDataFromSharedPreferences(EXHIBIT41); //load user rate
+        ratingBar.setRating(loadRateExhibit41); //set user rate
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float myRating, boolean fromUser) {
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                float myRate = ratingBar.getRating();
+                editor.putFloat(EXHIBIT41, myRate);
+                editor.apply();
+            }
+        });
+
+        //comment
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                exhibitDialog.dismiss();
+            }
+        });
+        exhibitDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        exhibitDialog.show();
+
+    }
+    public void showExhibit03PopUp(View v) {
+        TextView txtClose;
+        exhibitDialog.setContentView(R.layout.exhibit03_popup);
+        txtClose = exhibitDialog.findViewById(R.id.txtClose03Id);
+        Button buttonInDialog = exhibitDialog.findViewById(R.id.buttonFromDialog1Id);
+
+        RatingBar ratingBar;
+        ratingBar = exhibitDialog.findViewById(R.id.ratingBar03);
+        loadDataFromSharedPreferences(EXHIBIT03); //load user rate
+        ratingBar.setRating(loadRateExhibit03); //set user rate
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float myRating, boolean fromUser) {
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                float myRate = ratingBar.getRating();
+                editor.putFloat(EXHIBIT03, myRate);
                 editor.apply();
             }
         });
@@ -924,9 +993,28 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
 
     }
 
-    public void loadDataFromSharedPreferences() {
+    public void loadDataFromSharedPreferences(String exhibit) {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        loadRateExhibit1 = sharedPreferences.getFloat(EXHIBIT1, 0);
+        switch (exhibit) {
+            case EXHIBIT63:
+                loadRateExhibit63 = sharedPreferences.getFloat(exhibit, 0);
+                break;
+            case EXHIBIT41:
+                loadRateExhibit41 = sharedPreferences.getFloat(exhibit, 0);
+                break;
+            case EXHIBIT03:
+                loadRateExhibit03 = sharedPreferences.getFloat(exhibit, 0);
+                break;
+            default:
+                //default
+        }
+
     }
+    /*
+        public void loadDataFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        loadRateExhibit63 = sharedPreferences.getFloat(EXHIBIT41, 0);
+    }
+     */
 
 }
