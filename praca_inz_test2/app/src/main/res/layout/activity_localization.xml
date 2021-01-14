@@ -54,11 +54,12 @@
                 android:id="@+id/imageView"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="0dp"
                 android:layout_marginLeft="0dp"
-                android:rotation="90"
-                app:srcCompat="@drawable/marker_map_second"
                 android:contentDescription="Map of hall"
-                android:layout_marginStart="0dp" />
+                android:rotation="90"
+                app:srcCompat="@drawable/marker_map_third" />
+
             <ImageView
                 android:id="@+id/imgAmnimation1"
                 android:layout_width="30dp"
