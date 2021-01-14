@@ -694,7 +694,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         // "orientationAngles" now has up-to-date information.
         azimuth = (int) Math.toDegrees(orientationAngles[0]);
         azimuth = (azimuth + 360) % 360;
-        image.setRotation(azimuth - 280); // trzeba edytowac
+        //image.setRotation(azimuth - 280); // trzeba edytowac
         directionCompassTv.setText("Direction value: " + azimuth + "°");
     }
 
