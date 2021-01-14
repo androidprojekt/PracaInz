@@ -67,7 +67,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     private ImageView circleUserAnim;
     private ImageView circleAnim;
     private ImageView circleAnim2;
-    private Animation  scaleDown;
+    private Animation  scaleDown, markerAnim;
     //private Animation  scaleUp;
     private Dialog exhibitDialog;
     private ImageButton exhibit1Btn;
@@ -98,7 +98,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //----------------------------------------------------------------------------------------------
     private RelativeLayout mainLayout;
     RelativeLayout.LayoutParams layoutParams, tempParams;
-    private ImageView image; //marker on the map
+    private ImageView marker; //marker on the map
     private TextView directionCompassTv;
     TextView estimateXTv, estimateYTv, nrOfNeighbours;
     Context context;
@@ -183,11 +183,12 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         //------------------------------------------------------------------------------------------
 
         //------------------------------------------COPIED----------------------------------------------
-        circleUserAnim = findViewById(R.id.imgUserAnimation);
+        circleUserAnim = findViewById(R.id.circleOfMarkerId);
         circleAnim = findViewById(R.id.imgAmnimation1);
         circleAnim2 = findViewById(R.id.imgAmnimation2);
         //scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
+        markerAnim = AnimationUtils.loadAnimation(this,R.anim.marker_animation);
 
         exhibitDialog = new Dialog(this);
         exhibit1Btn = findViewById(R.id.exhibit1BtnId);
@@ -209,7 +210,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         estimateYTv = findViewById(R.id.estimateOfYId);
         nrOfNeighbours = findViewById(R.id.numberOfNeighbours);
         mainLayout = findViewById(R.id.main);
-        image = findViewById(R.id.imageView);
+        marker = findViewById(R.id.markerId);
         layoutParams = (RelativeLayout.LayoutParams) mainLayout.getLayoutParams();
         directionCompassTv = findViewById(R.id.directionCompassId);
         Button showUserLocation = findViewById(R.id.showUserLocationBtnId);
@@ -278,7 +279,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         wifiScanner.run();
         BLEstartScan.run();
         //------------------------------------------------------------------------------------------
-
+/*
         showUserLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -289,6 +290,8 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                 }
             }
         });
+
+ */
 
         startLocalization.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -648,15 +651,17 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         int leftMarginToAdd = (int) (estimateY * 100 * 1.2);
         int bottomMarginToAdd = (int) (estimateX * 100 * 1.2);
 
-        tempParams = (RelativeLayout.LayoutParams) image.getLayoutParams();
+        tempParams = (RelativeLayout.LayoutParams) marker.getLayoutParams();
         tempParams.leftMargin = 540;
         tempParams.topMargin = mainLayout.getLayoutParams().height - 140;
 
-        image.setLayoutParams(tempParams);
+        marker.setLayoutParams(tempParams);
         tempParams.leftMargin -= leftMarginToAdd;
         tempParams.topMargin -= bottomMarginToAdd;
 
-        image.setLayoutParams(tempParams);
+        marker.setLayoutParams(tempParams);
+        circleUserAnim.setLayoutParams(tempParams);
+        circleUserAnim.startAnimation(markerAnim);
         //-----------------------------------------------------------------------------------------
 
         //adding to the previous coordinates list:
