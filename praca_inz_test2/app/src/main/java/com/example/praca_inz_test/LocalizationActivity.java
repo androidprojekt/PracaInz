@@ -72,6 +72,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     private Dialog exhibitDialog;
     private ImageButton exhibit63Btn;
     int nrOfStrongestBeacons =2;
+    ImageButton arrow;
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String EXHIBIT63 = "textExhibit63";
@@ -163,6 +164,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         setContentView(R.layout.activity_localization);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out); //moving activity animation
 
+        arrow=findViewById(R.id.directionArrowId);
         calendar = Calendar.getInstance();
         simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
 
@@ -694,7 +696,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         // "orientationAngles" now has up-to-date information.
         azimuth = (int) Math.toDegrees(orientationAngles[0]);
         azimuth = (azimuth + 360) % 360;
-        //image.setRotation(azimuth - 280); // trzeba edytowac
+        arrow.setRotation(azimuth - 280); // trzeba edytowac
         directionCompassTv.setText("Direction value: " + azimuth + "°");
     }
 

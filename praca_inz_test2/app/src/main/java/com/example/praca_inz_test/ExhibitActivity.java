@@ -68,41 +68,6 @@ public class ExhibitActivity extends AppCompatActivity {
             }
         });
 
-        /*
-            public void loadDataFromSharedPreferences(String exhibit) {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        switch (exhibit) {
-            case EXHIBIT63:
-                loadRateExhibit63 = sharedPreferences.getFloat(exhibit, 0);
-                break;
-            case EXHIBIT41:
-                loadRateExhibit41 = sharedPreferences.getFloat(exhibit, 0);
-                break;
-            case EXHIBIT03:
-                loadRateExhibit03 = sharedPreferences.getFloat(exhibit, 0);
-                break;
-            default:
-                //default
-        }
-
-    }
-         */
-        /*
-         RatingBar ratingBar;
-        ratingBar = exhibitDialog.findViewById(R.id.ratingBar63);
-        loadDataFromSharedPreferences(EXHIBIT63); //load user rate
-        ratingBar.setRating(loadRateExhibit63); //set user rate
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float myRating, boolean fromUser) {
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                float myRate = ratingBar.getRating();
-                editor.putFloat(EXHIBIT63, myRate);
-                editor.apply();
-            }
-        });
-         */
 
     }
 }
