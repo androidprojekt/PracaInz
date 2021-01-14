@@ -192,10 +192,11 @@
                 android:id="@+id/directionArrowId"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginLeft="250dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginLeft="200dp"
                 android:layout_marginTop="20dp"
-                android:rotation="90"
-                tools:src="@drawable/abc_vector_test" />
+                app:srcCompat="@drawable/abc_vector_test"
+                android:rotation="90"/>
 
             <TextView
                 android:id="@+id/directionCompassId"
