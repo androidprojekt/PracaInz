@@ -84,7 +84,7 @@
                 android:layout_marginLeft="55dp"
                 android:layout_marginTop="77dp"
                 android:onClick="showExhibitPopUp"
-                app:srcCompat="@android:drawable/btn_star"
+                app:srcCompat="@drawable/exhibit_second_edit"
                 android:layout_marginStart="55dp" />
             <ImageView
                 android:id="@+id/imgAmnimation2"
@@ -102,7 +102,7 @@
                 android:layout_marginLeft="95dp"
                 android:layout_marginTop="237dp"
                 android:onClick="showExhibitPopUp"
-                app:srcCompat="@android:drawable/btn_star"
+                app:srcCompat="@drawable/exhibit_first_edit"
                 android:layout_marginStart="95dp" />
 
         </RelativeLayout>
