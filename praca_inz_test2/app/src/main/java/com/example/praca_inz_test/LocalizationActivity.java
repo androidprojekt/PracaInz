@@ -72,7 +72,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     private Dialog exhibitDialog;
     private ImageButton exhibit63Btn;
     int nrOfStrongestBeacons =2;
-    ImageButton arrow;
+    ImageView arrow;
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String EXHIBIT63 = "textExhibit63";
