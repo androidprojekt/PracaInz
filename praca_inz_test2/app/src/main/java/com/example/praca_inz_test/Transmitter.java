@@ -168,4 +168,6 @@ public class Transmitter {
         directionIteratorUp = 0;
         directionIteratorRight = 0;
     }
+
+
 }

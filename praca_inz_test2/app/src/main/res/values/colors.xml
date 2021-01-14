@@ -11,4 +11,5 @@
     <color name="colorBg">#f8fafb</color>
     <color name="lightGray">#D3D3D3</color>
     <color name="darkGray">#A9A9A9</color>
+    <color name="darkBlue">#191654</color>
 </resources>

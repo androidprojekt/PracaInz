@@ -71,6 +71,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //private Animation  scaleUp;
     private Dialog exhibitDialog;
     private ImageButton exhibit1Btn;
+    int nrOfStrongestBeacons =2;
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String EXHIBIT1 = "text";
@@ -480,12 +481,16 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                         if (finishedWifiIterator == numberOfWifi) {
                             startScanWifiFlag = false;
 
+                            /*
+                            //----------------------without strongest beacons-----------------------
                             beaconList.sort(new beaconSorter()); // list of sorted euclidean distances with x,y cordinates
                             for (int i = beaconList.size(); i > numberOfBeacons; i--)
                             //removing beacons from the list above the set value
                             {
                                 beaconList.remove(i - 1);
                             }
+
+                             */
 
                             finishedBeaconsIterator = 0;
                             finishedWifiIterator = 0;
@@ -522,7 +527,24 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         Log.d("Coordinate ", "x: " + estimateX + ", y: " + estimateY);
 
         rangeOfSearchSpace();  //determining x and y coordinates needed to search-space
-
+        //----------------------choice of 3 beacons that transmit the most power--------------------
+        //needed for it to work properly: set number of beacons = all (line 91)
+        //commenting the line from 404 to 410
+        for(Transmitter beacon : beaconList)
+        {
+            Log.d("edit", "beacons before sort: " + beacon.getMacAddress()+" average: "+ beacon.getAverage());
+        }
+        beaconList.sort(new strongestBeaconSorter()); // sorting the beacons that collected samples the fastest
+        for(Transmitter beacon : beaconList)
+        {
+            Log.d("edit", "beacons after sort: " + beacon.getMacAddress()+" average: "+ beacon.getAverage());
+        }
+        for (int i = beaconList.size(); i > nrOfStrongestBeacons; i--)
+        //removing beacons from the list above the set value
+        {
+            beaconList.remove(i - 1);
+        }
+        //------------------------------------------------------------------------------------------
         for (int x = minX; x < maxX; x++) {
             for (int y = minY; y < maxY; y++) {
                 String str = "" + x + "," + y;
@@ -708,6 +730,17 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
             if (t1.getSamplesIterator() < t2.getSamplesIterator()) {
                 return 1;
             } else return -1;
+        }
+    }
+
+    public static class strongestBeaconSorter implements Comparator<Transmitter> {
+        @Override
+        public int compare(Transmitter t1, Transmitter t2) {
+            if(t1.getAverage()<t2.getAverage()) {
+                return 1;
+            }
+            else return -1;
+            //return Integer.valueOf(t1.getSamplesIterator()).compareTo(t2.getSamplesIterator());
         }
     }
 
