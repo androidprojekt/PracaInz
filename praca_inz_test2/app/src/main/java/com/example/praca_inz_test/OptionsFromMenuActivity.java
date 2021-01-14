@@ -32,7 +32,7 @@ public class OptionsFromMenuActivity extends AppCompatActivity {
         {
             case 1:
                 Intent goToExhibitionIntent;
-                goToExhibitionIntent = new Intent(getApplicationContext(), ListOfExhibitsActivity.class);
+                goToExhibitionIntent = new Intent(getApplicationContext(), listOfExhibitsActivity.class);
                 startActivity(goToExhibitionIntent);
                 break;
             case 2:

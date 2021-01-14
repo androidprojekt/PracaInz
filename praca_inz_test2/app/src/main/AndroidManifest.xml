@@ -26,14 +26,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InstructionActivity"
+        <activity android:name=".instructionActivity"
             android:noHistory="true"/>
         <activity android:name=".OpinionsActivity" />
         <activity
             android:name=".ExhibitActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ListOfExhibitsActivity"
+            android:name=".listOfExhibitsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".OptionsFromMenuActivity"

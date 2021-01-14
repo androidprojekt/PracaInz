@@ -34,7 +34,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
     public void goToLocalizationMethod(View view) {
         Intent goToLocalizationMethod;
-        goToLocalizationMethod = new Intent(getApplicationContext(), InstructionActivity.class);
+        goToLocalizationMethod = new Intent(getApplicationContext(), instructionActivity.class);
         startActivity(goToLocalizationMethod);
     }
     @Override

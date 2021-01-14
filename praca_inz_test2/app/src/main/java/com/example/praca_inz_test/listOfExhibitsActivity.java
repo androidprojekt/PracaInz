@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 //---------------------------Activity displaying exhibits in the hall-------------------------------
 
-public class ListOfExhibitsActivity extends AppCompatActivity {
+public class listOfExhibitsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

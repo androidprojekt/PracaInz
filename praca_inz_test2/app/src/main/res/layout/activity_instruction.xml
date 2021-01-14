@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBg"
     android:orientation="vertical"
-    tools:context=".InstructionActivity">
+    tools:context=".instructionActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/slideViewPager"

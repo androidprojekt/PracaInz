@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 //-------------an activity that displays instructions for a localization activity-------------------
 
-public class InstructionActivity extends AppCompatActivity {
+public class instructionActivity extends AppCompatActivity {
 
     private LinearLayout mDotLayout;
 
