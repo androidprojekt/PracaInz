@@ -926,7 +926,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         });
         exhibitDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         exhibitDialog.show();
-
     }
     public void showExhibit41PopUp(View v) {
         TextView txtClose;

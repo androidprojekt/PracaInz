@@ -4,14 +4,19 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.Objects;
 
 public class ExhibitActivity extends AppCompatActivity {
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    String exhibit;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -30,6 +35,74 @@ public class ExhibitActivity extends AppCompatActivity {
         tvDesc.setText(desc);
         tvName.setText(name);
         img.setImageResource(thumbnail);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+
+        RatingBar ratingBar;
+        ratingBar = findViewById(R.id.ratingbar);
+
+
+        switch (name) {
+            case "eksponat63":
+                ratingBar.setRating(sharedPreferences.getFloat("textExhibit63",0)); //set user rate
+                exhibit="textExhibit63";
+                break;
+            case "eksponat41":
+                ratingBar.setRating(sharedPreferences.getFloat("textExhibit41",0)); //set user rate
+                exhibit="textExhibit41";
+                break;
+            case "eksponat03":
+                ratingBar.setRating(sharedPreferences.getFloat("textExhibit03",0)); //set user rate
+                exhibit="textExhibit03";
+                break;
+            default:
+                //default
+        }
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float myRating, boolean fromUser) {
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                float myRate = ratingBar.getRating();
+                editor.putFloat(exhibit, myRate);
+                editor.apply();
+            }
+        });
+
+        /*
+            public void loadDataFromSharedPreferences(String exhibit) {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        switch (exhibit) {
+            case EXHIBIT63:
+                loadRateExhibit63 = sharedPreferences.getFloat(exhibit, 0);
+                break;
+            case EXHIBIT41:
+                loadRateExhibit41 = sharedPreferences.getFloat(exhibit, 0);
+                break;
+            case EXHIBIT03:
+                loadRateExhibit03 = sharedPreferences.getFloat(exhibit, 0);
+                break;
+            default:
+                //default
+        }
+
+    }
+         */
+        /*
+         RatingBar ratingBar;
+        ratingBar = exhibitDialog.findViewById(R.id.ratingBar63);
+        loadDataFromSharedPreferences(EXHIBIT63); //load user rate
+        ratingBar.setRating(loadRateExhibit63); //set user rate
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float myRating, boolean fromUser) {
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                float myRate = ratingBar.getRating();
+                editor.putFloat(EXHIBIT63, myRate);
+                editor.apply();
+            }
+        });
+         */
 
     }
 }
