@@ -586,6 +586,8 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                     String databaseBeaconRssiTemp = tempPoint.getString(beacon.getMacAddress()); // from database
                     double databaseBeaconRssi = Double.parseDouble(databaseBeaconRssiTemp); //from database
                     double actualBeaconRssi = beacon.getAverage(); //actual
+                    Log.d("edit","actual point from beacon: "+beacon.getMacAddress()+": "+str+ " " + actualBeaconRssi);
+                    Log.d("edit", "database point from beacon: " +beacon.getMacAddress()+": "+ str+" " + databaseBeaconRssi);
                     tempCalculation = Math.pow((databaseBeaconRssi - actualBeaconRssi), 2);
                     tempTab.add(tempCalculation);
                 }
