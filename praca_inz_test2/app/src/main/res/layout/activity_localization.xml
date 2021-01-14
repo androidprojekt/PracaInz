@@ -48,7 +48,7 @@
             android:layout_height="372dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            android:background="@drawable/mapka_nowa">
+            android:background="@drawable/mapa_siatka">
 
             <ImageView
                 android:id="@+id/markerId"
@@ -61,12 +61,30 @@
                 app:srcCompat="@drawable/marker_map_third" />
 
             <ImageView
-                android:id="@+id/imgAmnimation1"
+                android:id="@+id/exhibitAnimation63"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="155dp"
+                android:src="@drawable/circle"
+                android:layout_marginStart="135dp" />
+            <ImageView
+                android:id="@+id/exhibitAnimation41"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:visibility="invisible"
                 android:layout_marginLeft="55dp"
                 android:layout_marginTop="77dp"
+                android:src="@drawable/circle"
+                android:layout_marginStart="55dp" />
+            <ImageView
+                android:id="@+id/exhibitAnimation03"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:visibility="invisible"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="315dp"
                 android:src="@drawable/circle"
                 android:layout_marginStart="55dp" />
             <ImageView
@@ -79,7 +97,7 @@
                 android:src="@drawable/user_location_circle"
                 android:layout_marginStart="175dp" />
             <ImageButton
-                android:id="@+id/exhibit1BtnId"
+                android:id="@+id/exhibit63BtnId"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="55dp"
@@ -87,8 +105,26 @@
                 android:onClick="showExhibitPopUp"
                 app:srcCompat="@drawable/exhibit_second_edit"
                 android:layout_marginStart="55dp" />
+            <ImageButton
+                android:id="@+id/exhibit41BtnId"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="155dp"
+                android:onClick="showExhibitPopUp"
+                app:srcCompat="@drawable/exhibit_second_edit"
+                android:layout_marginStart="135dp" />
+            <ImageButton
+                android:id="@+id/exhibit03BtnId"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="315dp"
+                android:onClick="showExhibitPopUp"
+                app:srcCompat="@drawable/exhibit_second_edit"
+                android:layout_marginStart="55dp" />
             <ImageView
-                android:id="@+id/imgAmnimation2"
+                android:id="@+id/exhibitAnimation22"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:visibility="invisible"
@@ -118,24 +154,13 @@
                 android:id="@+id/startLocalizationBtnId"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true"
                 android:textColor="#fff"
                 android:layout_marginTop="120dp"
                 android:text="start"
                 android:textStyle="bold"
-                android:background="@drawable/round_btn_white"
-                android:layout_marginStart="20dp" />
-            <Button
-                android:id="@+id/showUserLocationBtnId"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_marginTop="120dp"
-                android:text="Znajdź mnie"
-                android:textStyle="bold"
-                android:layout_marginLeft="190dp"
-                android:background="@drawable/round_btn_white"
-                android:layout_marginStart="190dp" />
+                android:background="@drawable/round_btn_white" />
             <TextView
                 android:id="@+id/estimateOfXId"
                 android:layout_width="wrap_content"

@@ -65,12 +65,11 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
 
     private NavigationView navigationView;
     private ImageView circleUserAnim;
-    private ImageView circleAnim;
-    private ImageView circleAnim2;
+    private ImageView exhibitAnim63, exhibitAnim22, exhibitAnim03, exhibitAnim41;
     private Animation  scaleDown, markerAnim;
     //private Animation  scaleUp;
     private Dialog exhibitDialog;
-    private ImageButton exhibit1Btn;
+    private ImageButton exhibit63Btn;
     int nrOfStrongestBeacons =2;
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -148,6 +147,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     Point firstExhibitPoint;
     Point secondExhibitPoint;
     Point thirdExhibitPoint;
+    Point fourthExhibitPoint;
     ArrayList<Point> listOfExhibits;
     //----------------------------------------------------------------------------------------------
 
@@ -184,25 +184,29 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
 
         //------------------------------------------COPIED----------------------------------------------
         circleUserAnim = findViewById(R.id.circleOfMarkerId);
-        circleAnim = findViewById(R.id.imgAmnimation1);
-        circleAnim2 = findViewById(R.id.imgAmnimation2);
+        exhibitAnim63 = findViewById(R.id.exhibitAnimation63);
+        exhibitAnim41 = findViewById(R.id.exhibitAnimation41);
+        exhibitAnim03 = findViewById(R.id.exhibitAnimation03);
+        exhibitAnim22 = findViewById(R.id.exhibitAnimation22);
         //scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
         markerAnim = AnimationUtils.loadAnimation(this,R.anim.marker_animation);
 
         exhibitDialog = new Dialog(this);
-        exhibit1Btn = findViewById(R.id.exhibit1BtnId);
+        exhibit63Btn = findViewById(R.id.exhibit63BtnId);
 
         listOfPreviousCoordinates = new ArrayList<>();
 
         firstExhibitPoint = new Point(6, 3, 0);
         secondExhibitPoint = new Point(4, 1, 0);
-        thirdExhibitPoint = new Point(2, 2, 0);
+        thirdExhibitPoint = new Point(0, 3, 0);
+        fourthExhibitPoint = new Point(2, 2, 0);
 
         listOfExhibits = new ArrayList<>();
         listOfExhibits.add(firstExhibitPoint);
         listOfExhibits.add(secondExhibitPoint);
         listOfExhibits.add(thirdExhibitPoint);
+        listOfExhibits.add(fourthExhibitPoint);
         //-----------------------------------------VIEWS--------------------------------------------
         context = getApplicationContext();
         //----------------------------------------layout------------------------------------------------
@@ -213,7 +217,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         marker = findViewById(R.id.markerId);
         layoutParams = (RelativeLayout.LayoutParams) mainLayout.getLayoutParams();
         directionCompassTv = findViewById(R.id.directionCompassId);
-        Button showUserLocation = findViewById(R.id.showUserLocationBtnId);
         Button startLocalization = findViewById(R.id.startLocalizationBtnId);
         //------------------------------------------------------------------------------------------
 
@@ -279,19 +282,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         wifiScanner.run();
         BLEstartScan.run();
         //------------------------------------------------------------------------------------------
-/*
-        showUserLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (tempParams != null) {
-                    circleUserAnim.setLayoutParams(tempParams);
-                    circleUserAnim.startAnimation(scaleDown);
-                }
-            }
-        });
-
- */
 
         startLocalization.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -886,14 +876,16 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                 //nothing
                 break;
             case 1:
-                circleAnim.startAnimation(scaleDown);
+                exhibitAnim63.startAnimation(scaleDown);
                 break;
             case 2:
-                //circleAnim2.startAnimation(scaleDown);
+                exhibitAnim41.startAnimation(scaleDown);
                 break;
             case 3:
-                circleAnim2.startAnimation(scaleDown);
+                exhibitAnim03.startAnimation(scaleDown);
                 break;
+            case 4:
+                exhibitAnim22.startAnimation(scaleDown);
             default:
                 //nothing
         }
