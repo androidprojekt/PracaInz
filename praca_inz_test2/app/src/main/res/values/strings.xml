@@ -35,6 +35,10 @@
     <string name="kim_jestesmy2">Kim jesteśmy</string>
     <string name="thumbnail_of_exhibit">Thumbnail of exhibit</string>
     <string name="exhibit_name">Exhibit Name</string>
+    <string name="opis_wazy">Waza dekoracyjna z miniaturami w owalnych medalionach: Zamek królewski od strony Wisły oraz bukiet kwiatowy Manufaktura Porcelany, Baranówka, Polska, lata 1829 – 1839 porcelana wielobarwnie malowana, złocona</string>
+    <string name="opis_waza">Waza dekoracyjna z miniaturami w owalnych medalionach: Zamek królewski od strony Wisły oraz bukiet kwiatowy Manufaktura Porcelany, Baranówka, Polska, lata 1829 – 1839 porcelana wielobarwnie malowana, złocona</string>
+    <string name="miniatura_opis">Dezydery Chłapowski, Kompozycja patriotyczna z portretem Tadeusza Kościuszki, po 1830 r.</string>
+    <string name="puchar_opis">Puchar dwoisty, neogotycki, według rysunku A. Dürera z 1526; A. Schleißner, Hanau (Hesja), po 1882</string>
 
     <string-array name="exhibitions">
         <item>Item1</item>

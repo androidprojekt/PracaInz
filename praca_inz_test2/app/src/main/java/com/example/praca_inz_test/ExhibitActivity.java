@@ -42,15 +42,15 @@ public class ExhibitActivity extends AppCompatActivity {
 
 
         switch (name) {
-            case "eksponat63":
+            case "Waza":
                 ratingBar.setRating(sharedPreferences.getFloat("textExhibit63",0)); //set user rate
                 exhibit="textExhibit63";
                 break;
-            case "eksponat41":
+            case "Miniatura":
                 ratingBar.setRating(sharedPreferences.getFloat("textExhibit41",0)); //set user rate
                 exhibit="textExhibit41";
                 break;
-            case "eksponat03":
+            case "Puchar":
                 ratingBar.setRating(sharedPreferences.getFloat("textExhibit03",0)); //set user rate
                 exhibit="textExhibit03";
                 break;

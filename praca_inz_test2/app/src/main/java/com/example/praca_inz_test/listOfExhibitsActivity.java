@@ -18,9 +18,9 @@ public class listOfExhibitsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_of_exhibits);
 
         List<Exhibit> lstExhibit = new ArrayList<>();
-        lstExhibit.add(new Exhibit("eksponat63",getString(R.string.exhibExampleDesc),R.drawable.pic1));
-        lstExhibit.add(new Exhibit("eksponat41",getString(R.string.exhibExampleDesc),R.drawable.pic2));
-        lstExhibit.add(new Exhibit("eksponat03",getString(R.string.exhibExampleDesc),R.drawable.pic3));
+        lstExhibit.add(new Exhibit("Waza",getString(R.string.exhibExampleDesc),R.drawable.waza));
+        lstExhibit.add(new Exhibit("Miniatura",getString(R.string.exhibExampleDesc),R.drawable.miniatura));
+        lstExhibit.add(new Exhibit("Puchar",getString(R.string.exhibExampleDesc),R.drawable.puchar_thumb));
         lstExhibit.add(new Exhibit("Dywan",getString(R.string.exhibExampleDesc),R.drawable.pic4));
 
         RecyclerView myrv = findViewById(R.id.recyclerview_id);

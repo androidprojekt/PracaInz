@@ -902,7 +902,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         TextView txtClose;
         exhibitDialog.setContentView(R.layout.exhibit63_popup);
         txtClose = exhibitDialog.findViewById(R.id.txtClose63Id);
-        Button buttonInDialog = exhibitDialog.findViewById(R.id.buttonFromDialog1Id);
+
 
         RatingBar ratingBar;
         ratingBar = exhibitDialog.findViewById(R.id.ratingBar63);
@@ -933,7 +933,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         TextView txtClose;
         exhibitDialog.setContentView(R.layout.exhibit41_popup);
         txtClose = exhibitDialog.findViewById(R.id.txtClose41Id);
-        Button buttonInDialog = exhibitDialog.findViewById(R.id.buttonFromDialog1Id);
+
 
         RatingBar ratingBar;
         ratingBar = exhibitDialog.findViewById(R.id.ratingBar41);
@@ -965,7 +965,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         TextView txtClose;
         exhibitDialog.setContentView(R.layout.exhibit03_popup);
         txtClose = exhibitDialog.findViewById(R.id.txtClose03Id);
-        Button buttonInDialog = exhibitDialog.findViewById(R.id.buttonFromDialog1Id);
+
 
         RatingBar ratingBar;
         ratingBar = exhibitDialog.findViewById(R.id.ratingBar03);

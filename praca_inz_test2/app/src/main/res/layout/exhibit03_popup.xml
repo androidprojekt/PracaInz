@@ -28,13 +28,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/pic2"
+            android:src="@drawable/puchar_thumb"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eksponat testowy 03"
+            android:text="Puchar"
             android:textStyle="bold"
             android:textColor="#fff"
             android:layout_gravity="center_horizontal"
@@ -42,23 +42,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tutaj opis eksponatu..."
+            android:text="@string/puchar_opis"
             android:textStyle="bold"
             android:textColor="#fff"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/buttonFromDialog1Id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        android:text="przycisk"
-        android:layout_marginTop="60dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/transparent_btn_style"
-        android:textColor="#fff"/>
     <RatingBar
         android:id="@+id/ratingBar03"
         style="@style/ImageRatingBar"

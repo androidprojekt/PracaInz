@@ -112,7 +112,7 @@
                 android:layout_marginLeft="135dp"
                 android:layout_marginTop="155dp"
                 android:onClick="showExhibit41PopUp"
-                app:srcCompat="@drawable/exhibit_second_edit"
+                app:srcCompat="@drawable/exhibit_first_edit"
                 android:layout_marginStart="135dp" />
             <ImageButton
                 android:id="@+id/exhibit03BtnId"
@@ -121,7 +121,7 @@
                 android:layout_marginLeft="55dp"
                 android:layout_marginTop="315dp"
                 android:onClick="showExhibit03PopUp"
-                app:srcCompat="@drawable/exhibit_second_edit"
+                app:srcCompat="@drawable/puchar"
                 android:layout_marginStart="55dp" />
             <ImageView
                 android:id="@+id/exhibitAnimation22"
@@ -187,13 +187,23 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="80dp"
                 android:text="Neighbours: " />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="210dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="0dp"
+                android:text="Kierunek: "
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#fff" />
 
             <ImageView
                 android:id="@+id/directionArrowId"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="200dp"
-                android:layout_marginLeft="200dp"
+                android:layout_marginStart="310dp"
+                android:layout_marginLeft="310dp"
                 android:layout_marginTop="20dp"
                 app:srcCompat="@drawable/abc_vector_test"
                 android:rotation="90"/>
