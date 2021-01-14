@@ -36,7 +36,7 @@ public class OptionsFromMenuActivity extends AppCompatActivity {
                 startActivity(goToExhibitionIntent);
                 break;
             case 2:
-                fragment = new informationsFragment();
+                fragment = new InformationsFragment();
                 loadFragment(fragment);
                 break;
             case 3:
