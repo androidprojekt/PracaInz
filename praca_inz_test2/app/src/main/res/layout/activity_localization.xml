@@ -65,19 +65,19 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:visibility="invisible"
-                android:layout_marginLeft="135dp"
-                android:layout_marginTop="155dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="77dp"
                 android:src="@drawable/circle"
-                android:layout_marginStart="135dp" />
+                android:layout_marginStart="55dp" />
             <ImageView
                 android:id="@+id/exhibitAnimation41"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:visibility="invisible"
-                android:layout_marginLeft="55dp"
-                android:layout_marginTop="77dp"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="155dp"
                 android:src="@drawable/circle"
-                android:layout_marginStart="55dp" />
+                android:layout_marginStart="135dp" />
             <ImageView
                 android:id="@+id/exhibitAnimation03"
                 android:layout_width="30dp"

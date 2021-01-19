@@ -71,7 +71,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //private Animation  scaleUp;
     private Dialog exhibitDialog;
     private ImageButton exhibit63Btn;
-    int nrOfStrongestBeacons =2;
+    int nrOfStrongestBeacons =3;
     ImageView arrow;
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -110,12 +110,12 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //----------------------------------------------------------------------------------------------
     //-----------------------------configuration variables------------------------------------------
     int numberOfSamples = 5; // number of needed samples to receive in online phase
-    int numberOfBeacons = 3; // beacons in system
+    int numberOfBeacons = 6; // beacons in system
     int numberOfWifi = 1;    // number of AP's
     int finishedBeaconsIterator = 0; //variable that determines whether the measurements have been collected from beacons
     int finishedWifiIterator = 0; //variable that determines whether the measurements have been collected from wifi
-    int xPoints = 4; // number of X coordinates
-    int yPoints = 4; // number of Y coordinates
+    int xPoints = 8; // number of X coordinates
+    int yPoints = 5; // number of Y coordinates
     double percentRangeOfEuclideanDist = 0.2; //percentage of the Euclidean distance range
     //----------------------------------------------------------------------------------------------
     //-------------variables needed to determine the direction intervals in compass-----------------
@@ -370,7 +370,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         //reading the main database file
         String json = null;
         try {
-            InputStream is = getAssets().open("zuzia_pokoj_final.json");
+            InputStream is = getAssets().open("polanka_final.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -526,7 +526,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         double tempCalculation = 0.0;
         Log.d("Coordinate ", "x: " + estimateX + ", y: " + estimateY);
 
-        rangeOfSearchSpace();  //determining x and y coordinates needed to search-space
+        //rangeOfSearchSpace();  //determining x and y coordinates needed to search-space
         //----------------------choice of 3 beacons that transmit the most power--------------------
         //needed for it to work properly: set number of beacons = all (line 91)
         //commenting the line from 404 to 410
@@ -586,8 +586,8 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                     String databaseBeaconRssiTemp = tempPoint.getString(beacon.getMacAddress()); // from database
                     double databaseBeaconRssi = Double.parseDouble(databaseBeaconRssiTemp); //from database
                     double actualBeaconRssi = beacon.getAverage(); //actual
-                    Log.d("edit","actual point from beacon: "+beacon.getMacAddress()+": "+str+ " " + actualBeaconRssi);
-                    Log.d("edit", "database point from beacon: " +beacon.getMacAddress()+": "+ str+" " + databaseBeaconRssi);
+                    Log.d("Weight","actual point from beacon: "+beacon.getMacAddress()+": "+str+ " " + actualBeaconRssi);
+                    Log.d("Weight", "database point from beacon: " +beacon.getMacAddress()+": "+ str+" " + databaseBeaconRssi);
                     tempCalculation = Math.pow((databaseBeaconRssi - actualBeaconRssi), 2);
                     tempTab.add(tempCalculation);
                 }
@@ -615,6 +615,8 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
             if (pt.getEuclideanDistance() <= maxEuclideanDistance) {
                 x += pt.getX() * (1 / pt.getEuclideanDistance());
                 y += pt.getY() * (1 / pt.getEuclideanDistance());
+
+                Log.d("Weight: ", " "+pt.getX() +","+pt.getY()+ "weight: "+(1 / pt.getEuclideanDistance()));
                 sumOfWeights += 1 / pt.getEuclideanDistance();
                 numberOfNeighbours++;
             }
@@ -861,6 +863,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         int exhibitIterator=1;
 
         for (Point exhibitPoint : listOfExhibits) {
+
             checkFlag = true;
             for (Point pt : listOfPreviousCoordinates) {
                 error = 0.0;
@@ -868,7 +871,12 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                         + Math.pow(Math.abs(pt.getActualY() - exhibitPoint.getY()), 2));
                 if (error > radiusOfCircleArea) checkFlag = false;
             }
-            if (checkFlag) exhibit = exhibitIterator;
+            if (checkFlag){
+                exhibit = exhibitIterator;
+
+                Log.d("number of exhibit:", " "+ exhibit);
+            }
+
 
             exhibitIterator++;
         }
@@ -878,6 +886,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
 
     public void startExhibitAnimation(int exhibit)
     {
+        Log.d("number of exhibit:", "switch "+ exhibit);
         switch (exhibit) {
             case 0:
                 //nothing
