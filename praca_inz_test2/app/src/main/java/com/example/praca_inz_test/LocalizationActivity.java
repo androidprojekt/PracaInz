@@ -42,6 +42,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -110,7 +111,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //----------------------------------------------------------------------------------------------
     //-----------------------------configuration variables------------------------------------------
     int numberOfSamples = 20; // number of needed samples to receive in online phase
-    int numberOfBeacons = 8; // beacons in system
+    int numberOfBeacons = 7; // beacons in system
     int numberOfWifi = 1;    // number of AP's
     int finishedBeaconsIterator = 0; //variable that determines whether the measurements have been collected from beacons
     int finishedWifiIterator = 0; //variable that determines whether the measurements have been collected from wifi
@@ -370,7 +371,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         //reading the main database file
         String json = null;
         try {
-            InputStream is = getAssets().open("polanka_up_19_01.json");
+            InputStream is = getAssets().open("polanka_21_01_uzupelnione.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -453,12 +454,44 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                                     newBeacon = false;
                                     if (transmitter.isSavingSamples()) {
                                         //the condition that all samples have been collected
-                                        if (transmitter.getSamplesIterator() < numberOfSamples) {
+                                        if (transmitter.getSamplesIterator() < numberOfSamples) { // zwiększa i wchodzi do kolejnego ifa
                                             transmitter.addToTheSamplesTab(rssi);
                                             transmitter.setSamplesIterator();
                                             transmitter.setDirectionIterators(determineDirection(azimuth));
+
                                         }
                                         if (transmitter.getSamplesIterator() == numberOfSamples) {
+
+                                            //Log.d("RSSI SORTER", "beacon: " + transmitter.getMacAddress());
+
+
+
+/*                                           transmitter.getSamplesTab().sort(new rssiTabSorter());
+
+
+                                            for(int i=0; i< transmitter.getSamplesTab().size(); i++)
+                                            {
+                                                Log.d("RSSI SORTER", "after sort: " + transmitter.getSamplesTab().get(i));
+                                            }
+
+                                            int temp = numberOfSamples/2;
+                                            int sizeOfList = transmitter.getSamplesTab().size();
+
+                                            for(int i = sizeOfList; i> temp; i--)
+                                            {
+                                                    transmitter.getSamplesTab().remove(i - 1);
+                                            }
+
+                                            for(int i=0; i< transmitter.getSamplesTab().size(); i++)
+                                            {
+                                                Log.d("RSSI SORTER", "end: " + transmitter.getSamplesTab().get(i));
+                                            }
+
+
+ */
+                                            //double average = averageOfList(transmitter.getSamplesTab());
+                                            //transmitter.setAverage(average);
+
                                             double average = averageOfList(transmitter.getSamplesTab());
                                             transmitter.setAverage(average);
                                             transmitter.setSavingSamples(false);
@@ -481,16 +514,31 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                         if (finishedWifiIterator == numberOfWifi) {
                             startScanWifiFlag = false;
 
-                            /*
+
                             //----------------------without strongest beacons-----------------------
+
+                            for(int i=0; i< beaconList.size(); i++)
+                            {
+                                Log.d("RSSI SORTER", "before: " + beaconList.get(i).getMacAddress()+" average: "+beaconList.get(i).getAverage());
+                            }
+
                             beaconList.sort(new beaconSorter()); // list of sorted euclidean distances with x,y cordinates
+
+                            for(int i=0; i< beaconList.size(); i++)
+                            {
+                                Log.d("RSSI SORTER", "after: " + beaconList.get(i).getMacAddress()+" average: "+beaconList.get(i).getAverage());
+                            }
                             for (int i = beaconList.size(); i > numberOfBeacons; i--)
                             //removing beacons from the list above the set value
                             {
                                 beaconList.remove(i - 1);
                             }
 
-                             */
+                            for(int i=0; i< beaconList.size(); i++)
+                            {
+                                Log.d("RSSI SORTER", "after remove: " + beaconList.get(i).getMacAddress()+" average: "+beaconList.get(i).getAverage());
+                            }
+
 
                             finishedBeaconsIterator = 0;
                             finishedWifiIterator = 0;
@@ -552,7 +600,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
 
                 JSONObject tempPoint;
 
-                /*
+
                 switch (sumOfDirectionIterators()) {
                     case "UP":
                         tempPoint = objectUpDatabase.getJSONObject(str);
@@ -575,9 +623,9 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                         //Toast.makeText(getApplicationContext(), "Default - UP", Toast.LENGTH_SHORT).show();
                 }
 
-                 */
 
-                tempPoint = objectUpDatabase.getJSONObject(str);
+
+                //tempPoint = objectUpDatabase.getJSONObject(str);
                 tempTab.clear(); // tempTab -->  (x_a - x_b)^2
 
                 String wifiRssiTemp = tempPoint.getString("WIFI");
@@ -751,6 +799,17 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
             }
             else return -1;
             //return Integer.valueOf(t1.getSamplesIterator()).compareTo(t2.getSamplesIterator());
+        }
+    }
+
+
+    public static class rssiTabSorter implements Comparator<Integer> {
+        @Override
+        public int compare(Integer t1, Integer t2) {
+            if(t1 < t2) {
+                return 1;
+            }
+            else return -1;
         }
     }
 
