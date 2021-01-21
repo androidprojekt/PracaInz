@@ -71,7 +71,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //private Animation  scaleUp;
     private Dialog exhibitDialog;
     private ImageButton exhibit63Btn;
-    int nrOfStrongestBeacons =3;
+    int nrOfStrongestBeacons =2;
     ImageView arrow;
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -109,8 +109,8 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     Context context;
     //----------------------------------------------------------------------------------------------
     //-----------------------------configuration variables------------------------------------------
-    int numberOfSamples = 5; // number of needed samples to receive in online phase
-    int numberOfBeacons = 6; // beacons in system
+    int numberOfSamples = 20; // number of needed samples to receive in online phase
+    int numberOfBeacons = 8; // beacons in system
     int numberOfWifi = 1;    // number of AP's
     int finishedBeaconsIterator = 0; //variable that determines whether the measurements have been collected from beacons
     int finishedWifiIterator = 0; //variable that determines whether the measurements have been collected from wifi
@@ -294,7 +294,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                numberOfSamples = 5;
+                numberOfSamples = 15;
                 startScanBeaconFlag = true;
                 startScanWifiFlag = true;
             }
@@ -370,7 +370,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         //reading the main database file
         String json = null;
         try {
-            InputStream is = getAssets().open("polanka_final.json");
+            InputStream is = getAssets().open("polanka_up_19_01.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -552,6 +552,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
 
                 JSONObject tempPoint;
 
+                /*
                 switch (sumOfDirectionIterators()) {
                     case "UP":
                         tempPoint = objectUpDatabase.getJSONObject(str);
@@ -574,6 +575,9 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                         //Toast.makeText(getApplicationContext(), "Default - UP", Toast.LENGTH_SHORT).show();
                 }
 
+                 */
+
+                tempPoint = objectUpDatabase.getJSONObject(str);
                 tempTab.clear(); // tempTab -->  (x_a - x_b)^2
 
                 String wifiRssiTemp = tempPoint.getString("WIFI");

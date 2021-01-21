@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         BluetoothAdapter mBlueToothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        if(mBlueToothAdapter ==null)
+        if(mBlueToothAdapter == null)
         {
-            Toast.makeText(getApplicationContext(),"Bluetooth not suported",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Bluetooth not supported",Toast.LENGTH_SHORT).show();
         }
         else {
             if (!mBlueToothAdapter.isEnabled()) {
