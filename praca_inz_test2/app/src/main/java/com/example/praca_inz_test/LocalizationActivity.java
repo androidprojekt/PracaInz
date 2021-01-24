@@ -42,7 +42,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -58,7 +57,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-import static android.Manifest.permission.EXPAND_STATUS_BAR;
 import static android.Manifest.permission.READ_PHONE_STATE;
 import static java.lang.String.valueOf;
 //-------------main functionality of the application - user location estimation---------------------
@@ -193,9 +191,9 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         //------------------------------------------COPIED----------------------------------------------
         circleUserAnim = findViewById(R.id.circleOfMarkerId);
         exhibitAnim63 = findViewById(R.id.exhibitAnimation63);
-        exhibitAnim41 = findViewById(R.id.exhibitAnimation41);
+        exhibitAnim41 = findViewById(R.id.exhibitAnimation50);
         exhibitAnim03 = findViewById(R.id.exhibitAnimation03);
-        exhibitAnim22 = findViewById(R.id.exhibitAnimation22);
+        exhibitAnim22 = findViewById(R.id.exhibitAnimation00);
         //scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
         markerAnim = AnimationUtils.loadAnimation(this,R.anim.marker_animation);
@@ -206,9 +204,9 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         listOfPreviousCoordinates = new ArrayList<>();
 
         firstExhibitPoint = new Point(6, 3, 0);
-        secondExhibitPoint = new Point(4, 1, 0);
+        secondExhibitPoint = new Point(5, 0, 0);
         thirdExhibitPoint = new Point(0, 3, 0);
-        fourthExhibitPoint = new Point(2, 2, 0);
+        fourthExhibitPoint = new Point(0, 0, 0);
 
         listOfExhibits = new ArrayList<>();
         listOfExhibits.add(firstExhibitPoint);
@@ -439,9 +437,9 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         @Override
         public void onScanResult(int callbackType, final ScanResult result) {
             super.onScanResult(callbackType, result);
-            Log.d("onScanResult start TIME", "Start test");
             final BluetoothDevice device = result.getDevice();
             final int rssi = result.getRssi();
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -1001,7 +999,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         exhibitDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         exhibitDialog.show();
     }
-    public void showExhibit41PopUp(View v) {
+    public void showExhibit50PopUp(View v) {
         TextView txtClose;
         exhibitDialog.setContentView(R.layout.exhibit41_popup);
         txtClose = exhibitDialog.findViewById(R.id.txtClose41Id);

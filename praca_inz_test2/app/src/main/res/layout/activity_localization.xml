@@ -70,14 +70,14 @@
                 android:src="@drawable/circle"
                 android:layout_marginStart="55dp" />
             <ImageView
-                android:id="@+id/exhibitAnimation41"
+                android:id="@+id/exhibitAnimation50"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:visibility="invisible"
-                android:layout_marginLeft="135dp"
-                android:layout_marginTop="155dp"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="120dp"
                 android:src="@drawable/circle"
-                android:layout_marginStart="135dp" />
+                android:layout_marginStart="175dp" />
             <ImageView
                 android:id="@+id/exhibitAnimation03"
                 android:layout_width="30dp"
@@ -106,14 +106,14 @@
                 app:srcCompat="@drawable/exhibit_second_edit"
                 android:layout_marginStart="55dp" />
             <ImageButton
-                android:id="@+id/exhibit41BtnId"
+                android:id="@+id/exhibit50BtnId"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="135dp"
-                android:layout_marginTop="155dp"
-                android:onClick="showExhibit41PopUp"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="120dp"
+                android:onClick="showExhibit50PopUp"
                 app:srcCompat="@drawable/exhibit_first_edit"
-                android:layout_marginStart="135dp" />
+                android:layout_marginStart="175dp" />
             <ImageButton
                 android:id="@+id/exhibit03BtnId"
                 android:layout_width="30dp"
@@ -124,23 +124,23 @@
                 app:srcCompat="@drawable/puchar"
                 android:layout_marginStart="55dp" />
             <ImageView
-                android:id="@+id/exhibitAnimation22"
+                android:id="@+id/exhibitAnimation00"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:visibility="invisible"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="237dp"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="317dp"
                 android:src="@drawable/circle"
-                android:layout_marginStart="95dp" />
+                android:layout_marginStart="175dp" />
             <ImageButton
-                android:id="@+id/exhibit2BtnId"
+                android:id="@+id/exhibit00BtnId"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="95dp"
-                android:layout_marginTop="237dp"
+                android:layout_marginLeft="175dp"
+                android:layout_marginTop="317dp"
                 android:onClick="showExhibit63PopUp"
                 app:srcCompat="@drawable/exhibit_first_edit"
-                android:layout_marginStart="95dp" />
+                android:layout_marginStart="175dp" />
 
         </RelativeLayout>
 
