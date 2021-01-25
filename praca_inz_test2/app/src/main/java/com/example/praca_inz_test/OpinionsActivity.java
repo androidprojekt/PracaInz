@@ -52,7 +52,7 @@ public class OpinionsActivity extends AppCompatActivity {
                     opinion.setNickname(nickEditText.getText().toString());
                     opinion.setOpinion(opinionEditText.getText().toString());
 
-                    myRef.child(String.valueOf(maxId)).setValue(opinion);
+                    myRef.child(String.valueOf(maxId+1)).setValue(opinion);
 
                     Toast.makeText(getApplicationContext(),"Send opinion succefully!",Toast.LENGTH_SHORT).show();
                     opinionEditText.setText("");
