@@ -28,24 +28,26 @@ public class SliderAdapter extends PagerAdapter {
     //------------------------------------------Arrays----------------------------------------------
 
     public int[] slide_Images = {
+            R.drawable.location_icon_info,
             R.drawable.podejdz_image_info,
             R.drawable.click_image_info,
-            R.drawable.ocena_image_info,
-            R.drawable.location_icon_info
+            R.drawable.ocena_image_info
+
     } ;
 
     public String[] slide_Headings = {
+            "START",
             "Podejdź",
             "Kliknij",
-            "Oceń",
-            "Znajdź mnie"
+            "Oceń"
     };
 
     public String[] slide_Desc = {
+            "Naciśnij przycisk START, \naby wyświetlić swoją lokalizację na mapie",
             "Podejście do eksponatu spowoduje jego podświetlenie",
             "Kliknij na dany eksponat na mapce, \naby zasięgnąć po więcej informacji.",
-            "Możesz ocenić eksponat,\n a także napisać swoją opinię\n siegając do zakładki Opinie",
-            "Naciśnij przycisk znajdź mnie, \naby wyświetlić swoją lokalizację na mapie"
+            "Możesz ocenić eksponat,\n a także napisać swoją opinię\n siegając do zakładki Opinie"
+
     };
 
 
