@@ -142,7 +142,6 @@ public class Transmitter {
                 directionIteratorRight++;
                 break;
             default:
-                //log d
         }
     }
 

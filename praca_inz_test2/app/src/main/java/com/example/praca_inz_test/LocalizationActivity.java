@@ -108,7 +108,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     Context context;
     //----------------------------------------------------------------------------------------------
     //-----------------------------configuration variables------------------------------------------
-    int numberOfSamples = 20; // number of needed samples to receive in online phase
+    int numberOfSamples = 15; // number of needed samples to receive in online phase
     int numberOfBeacons = 7; // beacons in system
     int numberOfWifi = 1;    // number of AP's
     int finishedBeaconsIterator = 0; //variable that determines whether the measurements have been collected from beacons
@@ -455,6 +455,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                                         if (transmitter.getSamplesIterator() < numberOfSamples) { // zwiększa i wchodzi do kolejnego ifa
                                             transmitter.addToTheSamplesTab(rssi);
                                             transmitter.setSamplesIterator();
+
                                             transmitter.setDirectionIterators(determineDirection(azimuth));
 
                                         }
@@ -602,23 +603,18 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                 switch (sumOfDirectionIterators()) {
                     case "UP":
                         tempPoint = objectUpDatabase.getJSONObject(str);
-                        //Toast.makeText(getApplicationContext(), "UP", Toast.LENGTH_SHORT).show();
                         break;
                     case "DOWN":
                         tempPoint = objectDownDatabase.getJSONObject(str);
-                        //Toast.makeText(getApplicationContext(), "DOWN", Toast.LENGTH_SHORT).show();
                         break;
                     case "LEFT":
                         tempPoint = objectLeftDatabase.getJSONObject(str);
-                        //Toast.makeText(getApplicationContext(), "LEFT", Toast.LENGTH_SHORT).show();
                         break;
                     case "RIGHT":
                         tempPoint = objectRightDatabase.getJSONObject(str);
-                        //Toast.makeText(getApplicationContext(), "RIGHT", Toast.LENGTH_SHORT).show();
                         break;
                     default:
                         tempPoint = objectUpDatabase.getJSONObject(str); //get default object (UP)
-                        //Toast.makeText(getApplicationContext(), "Default - UP", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -853,8 +849,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
 
     public String determineDirection(int value) {
 
-        Log.d("AZIMUTH", "CHECK determinate: " + value);
-        Log.d("AZIMUTH", "up, right, down, left: " + upperLimitUp + ", " + upperLimitRight + ", " + upperLimitDown + ", " + upperLimitLeft);
         if (value >= upperLimitLeft && value < upperLimitUp)
             direction = "UP"; //UP
         if ((value >= upperLimitUp && value < 360) || (value >= 0 && value < upperLimitRight))
@@ -863,7 +857,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
             direction = "DOWN"; // DOWN
         if ((value >= upperLimitDown && value < upperLimitLeft))
             direction = "LEFT"; //LEFT
-        Log.d("AZIMUTH", "CHECK determinate retrb: " + direction);
         return direction;
     }
 
