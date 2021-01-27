@@ -63,6 +63,7 @@ import static java.lang.String.valueOf;
 
 public class LocalizationActivity extends AppCompatActivity implements SensorEventListener {
 
+    //--------------------------------------others--------------------------------------------------
     private NavigationView navigationView;
     private ImageView circleUserAnim;
     private ImageView exhibitAnim63, exhibitAnim22, exhibitAnim03, exhibitAnim41;
@@ -70,8 +71,15 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //private Animation  scaleUp;
     private Dialog exhibitDialog;
     private ImageButton exhibit63Btn;
-    int nrOfStrongestBeacons =2;
+    int nrOfStrongestBeacons =3; //number of strongest beacons used for the algorithm
     ImageView arrow;
+    private Calendar calendar;
+    private SimpleDateFormat simpleDateFormat;
+    Point firstExhibitPoint;
+    Point secondExhibitPoint;
+    Point thirdExhibitPoint;
+    Point fourthExhibitPoint;
+    ArrayList<Point> listOfExhibits;
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String EXHIBIT63 = "textExhibit63";
@@ -119,11 +127,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //----------------------------------------------------------------------------------------------
     //-------------variables needed to determine the direction intervals in compass-----------------
     String direction = "UP"; //default value
-    /* zuzia pokoj
-    int upperLimitUp = 120;
-    int upperLimitRight = 210;
-    int upperLimitDown = 340;
-    int upperLimitLeft = 50;*/
     int upperLimitUp = 327;
     int upperLimitRight = 50;
     int upperLimitDown = 142;
@@ -145,15 +148,8 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     JSONObject objectRightDatabase;
     //----------------------------------------------------------------------------------------------
     //---------------------needed to previous Coordinates Bufor--------------------------------------
-    ArrayList<Point> listOfPreviousCoordinates; //include 3 previous localization
-    private Calendar calendar;
-    private SimpleDateFormat simpleDateFormat;
-    double radiusOfCircleArea = 1.5; // the area in which the exhibit is highlighted
-    Point firstExhibitPoint;
-    Point secondExhibitPoint;
-    Point thirdExhibitPoint;
-    Point fourthExhibitPoint;
-    ArrayList<Point> listOfExhibits;
+    ArrayList<Point> listOfPreviousCoordinates; //include previous localizations
+    double radiusOfCircleArea = 1.5; // the area in which the exhibit is highlighted [m]
     //----------------------------------------------------------------------------------------------
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -188,19 +184,17 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         });
         //------------------------------------------------------------------------------------------
 
-        //------------------------------------------COPIED----------------------------------------------
+        //----------------------------------------------------------------------------------------
         circleUserAnim = findViewById(R.id.circleOfMarkerId);
         exhibitAnim63 = findViewById(R.id.exhibitAnimation63);
         exhibitAnim41 = findViewById(R.id.exhibitAnimation50);
         exhibitAnim03 = findViewById(R.id.exhibitAnimation03);
         exhibitAnim22 = findViewById(R.id.exhibitAnimation00);
-        //scaleUp = AnimationUtils.loadAnimation(this, R.anim.scale_up);
         scaleDown = AnimationUtils.loadAnimation(this, R.anim.scale_down);
         markerAnim = AnimationUtils.loadAnimation(this,R.anim.marker_animation);
 
         exhibitDialog = new Dialog(this);
         exhibit63Btn = findViewById(R.id.exhibit63BtnId);
-
         listOfPreviousCoordinates = new ArrayList<>();
 
         firstExhibitPoint = new Point(6, 3, 0);
@@ -284,7 +278,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         //---------------------------------new functionality----------------------------------------
         // when the app start's, their receiving rssi from wifi and beacons
         // later we should add a functionality in onPause, onResume, onStop etc.
-        // also we should make a version in real time without button
         wifiScanner.run();
         BLEstartScan.run();
         //------------------------------------------------------------------------------------------
@@ -455,42 +448,9 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                                         if (transmitter.getSamplesIterator() < numberOfSamples) { // zwiększa i wchodzi do kolejnego ifa
                                             transmitter.addToTheSamplesTab(rssi);
                                             transmitter.setSamplesIterator();
-
                                             transmitter.setDirectionIterators(determineDirection(azimuth));
-
                                         }
                                         if (transmitter.getSamplesIterator() == numberOfSamples) {
-
-                                            //Log.d("RSSI SORTER", "beacon: " + transmitter.getMacAddress());
-
-
-
-/*                                           transmitter.getSamplesTab().sort(new rssiTabSorter());
-
-
-                                            for(int i=0; i< transmitter.getSamplesTab().size(); i++)
-                                            {
-                                                Log.d("RSSI SORTER", "after sort: " + transmitter.getSamplesTab().get(i));
-                                            }
-
-                                            int temp = numberOfSamples/2;
-                                            int sizeOfList = transmitter.getSamplesTab().size();
-
-                                            for(int i = sizeOfList; i> temp; i--)
-                                            {
-                                                    transmitter.getSamplesTab().remove(i - 1);
-                                            }
-
-                                            for(int i=0; i< transmitter.getSamplesTab().size(); i++)
-                                            {
-                                                Log.d("RSSI SORTER", "end: " + transmitter.getSamplesTab().get(i));
-                                            }
-
-
- */
-                                            //double average = averageOfList(transmitter.getSamplesTab());
-                                            //transmitter.setAverage(average);
-
                                             double average = averageOfList(transmitter.getSamplesTab());
                                             transmitter.setAverage(average);
                                             transmitter.setSavingSamples(false);
@@ -513,40 +473,22 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                         if (finishedWifiIterator == numberOfWifi) {
                             startScanWifiFlag = false;
 
-
                             //----------------------without strongest beacons-----------------------
 
-                            for(int i=0; i< beaconList.size(); i++)
-                            {
-                                Log.d("RSSI SORTER", "before: " + beaconList.get(i).getMacAddress()+" average: "+beaconList.get(i).getAverage());
-                            }
+                            beaconList.sort(new beaconSorter());
 
-                            beaconList.sort(new beaconSorter()); // list of sorted euclidean distances with x,y cordinates
-
-                            for(int i=0; i< beaconList.size(); i++)
-                            {
-                                Log.d("RSSI SORTER", "after: " + beaconList.get(i).getMacAddress()+" average: "+beaconList.get(i).getAverage());
-                            }
                             for (int i = beaconList.size(); i > numberOfBeacons; i--)
                             //removing beacons from the list above the set value
                             {
                                 beaconList.remove(i - 1);
                             }
 
-                            for(int i=0; i< beaconList.size(); i++)
-                            {
-                                Log.d("RSSI SORTER", "after remove: " + beaconList.get(i).getMacAddress()+" average: "+beaconList.get(i).getAverage());
-                            }
-
-
                             finishedBeaconsIterator = 0;
                             finishedWifiIterator = 0;
 
                             try {
-                                //Toast.makeText(getApplicationContext(), "success ", Toast.LENGTH_SHORT).show();
                                 estimatePositions();
                             } catch (JSONException e) {
-                                //Toast.makeText(getApplicationContext(), "exc", Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
                             }
                         }
@@ -571,21 +513,13 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     public void estimatePositions() throws JSONException {
         ArrayList<Double> tempTab = new ArrayList<>(); // (x_a - x_b)^2
         double tempCalculation = 0.0;
-        Log.d("Coordinate ", "x: " + estimateX + ", y: " + estimateY);
+
 
         //rangeOfSearchSpace();  //determining x and y coordinates needed to search-space
         //----------------------choice of 3 beacons that transmit the most power--------------------
-        //needed for it to work properly: set number of beacons = all (line 91)
-        //commenting the line from 404 to 410
-        for(Transmitter beacon : beaconList)
-        {
-            Log.d("edit", "beacons before sort: " + beacon.getMacAddress()+" average: "+ beacon.getAverage());
-        }
-        beaconList.sort(new strongestBeaconSorter()); // sorting the beacons that collected samples the fastest
-        for(Transmitter beacon : beaconList)
-        {
-            Log.d("edit", "beacons after sort: " + beacon.getMacAddress()+" average: "+ beacon.getAverage());
-        }
+        //needed for it to work properly: set number of beacons = all
+
+        beaconList.sort(new strongestBeaconSorter());
         for (int i = beaconList.size(); i > nrOfStrongestBeacons; i--)
         //removing beacons from the list above the set value
         {
@@ -598,8 +532,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                 Log.d("test123", ": " + str);
 
                 JSONObject tempPoint;
-
-
                 switch (sumOfDirectionIterators()) {
                     case "UP":
                         tempPoint = objectUpDatabase.getJSONObject(str);
@@ -617,9 +549,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                         tempPoint = objectUpDatabase.getJSONObject(str); //get default object (UP)
                 }
 
-
-
-                //tempPoint = objectUpDatabase.getJSONObject(str);
                 tempTab.clear(); // tempTab -->  (x_a - x_b)^2
 
                 String wifiRssiTemp = tempPoint.getString("WIFI");
@@ -632,8 +561,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                     String databaseBeaconRssiTemp = tempPoint.getString(beacon.getMacAddress()); // from database
                     double databaseBeaconRssi = Double.parseDouble(databaseBeaconRssiTemp); //from database
                     double actualBeaconRssi = beacon.getAverage(); //actual
-                    Log.d("Weight","actual point from beacon: "+beacon.getMacAddress()+": "+str+ " " + actualBeaconRssi);
-                    Log.d("Weight", "database point from beacon: " +beacon.getMacAddress()+": "+ str+" " + databaseBeaconRssi);
                     tempCalculation = Math.pow((databaseBeaconRssi - actualBeaconRssi), 2);
                     tempTab.add(tempCalculation);
                 }
@@ -662,7 +589,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
                 x += pt.getX() * (1 / pt.getEuclideanDistance());
                 y += pt.getY() * (1 / pt.getEuclideanDistance());
 
-                Log.d("Weight: ", " "+pt.getX() +","+pt.getY()+ "weight: "+(1 / pt.getEuclideanDistance()));
                 sumOfWeights += 1 / pt.getEuclideanDistance();
                 numberOfNeighbours++;
             }
@@ -710,16 +636,13 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         //-----------------------------------------------------------------------------------------
 
         //adding to the previous coordinates list:
-        //transmitter.setLastUpdate(simpleDateFormat.format(calendar.getTime()));
         calendar = Calendar.getInstance();
         Point actualPoint = new Point(estimateX, estimateY, simpleDateFormat.format(calendar.getTime()));
         // call method which adding to the list
         //----------------------------------------
         addToThePreviousCoordinates(actualPoint);
-       // if (exhibitZone() == 1) circleAnim.startAnimation(scaleDown);
         prepareToNewScan();
         int tempExhibit = exhibitZone();
-        //Toast.makeText(getApplicationContext(),"exhibit: "+tempExhibit,Toast.LENGTH_SHORT).show();
         startExhibitAnimation(tempExhibit);
 
     }
@@ -842,8 +765,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
             if (maxY > yPoints)
                 maxY = yPoints;
 
-            Log.d("Cordinate ", "min x: " + minX + ", max x: " + maxX);
-            Log.d("Cordinate ", "min y: " + minY + ", max y: " + maxY);
         }
     }
 
@@ -904,16 +825,13 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         }
         listOfPreviousCoordinates.add(0, pt); //adding point in first index at list and shifting other points to the end? Is it okay?
         //listOfPreviousCoordinates.sort(new timeSorter());
-        Log.d("listcheck", "-------------------------------------");
-        for (Point p : listOfPreviousCoordinates) {
-            Log.d("listcheck", "sort list. x: " + p.getActualX() + " y: " + p.getActualY() + " time: " + p.getLastUpdate());
-        }
+
     }
 
     public int exhibitZone() {
         int exhibit = 0; //none exhibit
         double error = 0.0;
-        boolean checkFlag = true; // żeby wszystkie punkty w buforze miały mniejszą odległość niż zadana
+        boolean checkFlag = true;
         int exhibitIterator=1;
 
         for (Point exhibitPoint : listOfExhibits) {
@@ -928,10 +846,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
             if (checkFlag){
                 exhibit = exhibitIterator;
 
-                Log.d("number of exhibit:", " "+ exhibit);
             }
-
-
             exhibitIterator++;
         }
         return exhibit;
@@ -997,7 +912,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         exhibitDialog.setContentView(R.layout.exhibit41_popup);
         txtClose = exhibitDialog.findViewById(R.id.txtClose41Id);
 
-
         RatingBar ratingBar;
         ratingBar = exhibitDialog.findViewById(R.id.ratingBar41);
         loadDataFromSharedPreferences(EXHIBIT41); //load user rate
@@ -1028,8 +942,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         TextView txtClose;
         exhibitDialog.setContentView(R.layout.exhibit03_popup);
         txtClose = exhibitDialog.findViewById(R.id.txtClose03Id);
-
-
         RatingBar ratingBar;
         ratingBar = exhibitDialog.findViewById(R.id.ratingBar03);
         loadDataFromSharedPreferences(EXHIBIT03); //load user rate
@@ -1074,11 +986,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
         }
 
     }
-    /*
-        public void loadDataFromSharedPreferences() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        loadRateExhibit63 = sharedPreferences.getFloat(EXHIBIT41, 0);
-    }
-     */
+
 
 }
