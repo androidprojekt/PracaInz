@@ -24,7 +24,59 @@
     <string name="o_nas">O nas</string>
     <string name="jesteśmy_studentami">Jesteśmy studentami kierunku Elektronika i Telekomunikacja na wydziale Informatyki i Telekomunikacji Politechniki Poznańskiej.\n\n
         Projekt stworzony został jako praca inżynierska, której celem było opracowanie aplikacji mobilnej „Inteligentne oprowadzanie po muzeum”.\n\n
-        Głównym zadaniem systemu inteligentnego oprowadzania jest umożliwienie interakcji użytkownika z aplikacją mobilną i estymacja jego położenia w pomieszczeniu, na podstawie której na ekranie telefonu zwiedzającego będą wyzwalały się odpowiednie treści odnoszące się do eksponatów znajdujących się w jego pobliżu.</string>
+        Głównym zadaniem systemu inteligentnego oprowadzania jest umożliwienie interakcji użytkownika z aplikacją mobilną i estymacja jego położenia w pomieszczeniu, na podstawie której na ekranie telefonu zwiedzającego będą wyzwalały się odpowiednie treści odnoszące się do eksponatów znajdujących się w jego pobliżu.
+           \n \n \n
+       <b> Źródła do zastosowanych obrazów i treści w aplikacji:</b>
+        \n
+       <b>book_icon.png: </b>
+        \n
+https://www.flaticon.com/free-icon/book_864685
+        \n
+        <b>exhibition_icon.png: </b>
+        \n
+https://www.flaticon.com/free-icon/exhibition_782001
+        \n
+        <b>exposition.png:</b> \n
+https://www.flaticon.com/free-icon/painting-exhibit-in-fine-art-museum_28579 \n
+        <b>Info_icon.png:</b> \n
+https://www.flaticon.com/free-icon/info_151776 \n
+        <b>Information_icon.png:</b> \n
+https://www.flaticon.com/free-icon/information_545674 \n
+        <b>Location_icon.png:</b> \n
+https://www.flaticon.com/free-icon/museum_2714709 \n
+        <b>second_logo.png:</b> \n
+https://msu.mnp.art.pl/fotki/files/files/www/wieza/Werner.jpg \n
+        <b>logo_pp.png:</b> \n
+        https://upload.wikimedia.org/wikipedia/commons/1/11/Logo_PP.png \n
+        <b>exhibit_first_edit.png:</b> \n
+https://www.flaticon.com/free-icon/painting_3791121 \n
+        <b>podejdz_image_info.png:</b> \n
+        https://www.flaticon.com/free-icon/exhibition_1577707 \n
+        <b>website_icon.png:</b> \n
+https://www.flaticon.com/free-icon/museum_2714721 \n
+        <b>Logout.png:</b> \n
+https://www.flaticon.com/free-icon/logout_992680 \n
+        <b>About.png:</b> \n
+https://www.flaticon.com/free-icon/about-us_15659 \n
+        <b>Others.png:</b> \n
+https://www.flaticon.com/free-icon/clipboards_616948 \n
+
+        \n \n
+<b>Treści dotyczące eksponatów wraz ze zdjęciami oraz opis muzeum: </b> \n
+https://msu.mnp.art.pl/
+\n
+<b>Puchar.png: </b> \n
+https://www.flaticon.com/free-icon/exhibition_1577630 \n
+<b>Zakładka.png: </b> \n
+https://pixabay.com/pl/illustrations/wst%C4%85%C5%BCka-zak%C5%82adka-edukacja-szko%C5%82y-1202757/ \n
+<b>exhibit_second_edit.png: </b> \n
+https://www.flaticon.com/free-icon/exhibit_2714846 \n
+<b>click_image_info.png: </b> \n
+https://www.flaticon.com/free-icon/tap_4001152
+        \n \n
+<i>Podczas tworzenia aplikacji, korzystano z developer.android.com, stackoverflow.com, oraz innych poradników (również video) zamieszczonych w internecie. </i>
+
+    </string>
     <string name="jak_dziala">Jak działa?</string>
     <string name="Wykorzystanie_czujnikow">Wykorzystanie czujników Estimote Proximity Beacon oraz punktu dostępowego WiFi umożliwia wyznaczanie położenia użytkownika, dzięki temu na ekranie telefonu eksponat w jego najbliższym otoczeniu zostaje podświetlony.</string>
     <string name="funkcje">Funkcje w zakładce Przewodnik:</string>
@@ -39,6 +91,9 @@
     <string name="opis_waza">Waza dekoracyjna z miniaturami w owalnych medalionach: Zamek królewski od strony Wisły oraz bukiet kwiatowy Manufaktura Porcelany, Baranówka, Polska, lata 1829 – 1839 porcelana wielobarwnie malowana, złocona</string>
     <string name="miniatura_opis">Dezydery Chłapowski, Kompozycja patriotyczna z portretem Tadeusza Kościuszki, po 1830 r.</string>
     <string name="puchar_opis">Puchar dwoisty, neogotycki, według rysunku A. Dürera z 1526; A. Schleißner, Hanau (Hesja), po 1882</string>
+
+    <string name="pictures_sources">
+    </string>
 
     <string-array name="exhibitions">
         <item>Item1</item>
