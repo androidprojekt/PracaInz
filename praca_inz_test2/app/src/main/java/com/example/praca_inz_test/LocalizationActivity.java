@@ -63,6 +63,18 @@ import static java.lang.String.valueOf;
 
 public class LocalizationActivity extends AppCompatActivity implements SensorEventListener {
 
+
+    //-----------------------------configuration variables------------------------------------------
+    int numberOfSamples = 15; // number of needed samples to receive in online phase
+    int numberOfBeacons = 7; // beacons in system/ How many fastest collecting rssi beacons in the system
+    int numberOfWifi = 1;    // number of AP's
+    int xPoints = 8; // number of X coordinates
+    int yPoints = 5; // number of Y coordinates
+    double percentRangeOfEuclideanDist = 0.2; //percentage of the Euclidean distance range
+    double radiusOfCircleArea = 1.5; // the area in which the exhibit is highlighted [m]
+    int nrOfStrongestBeacons =3; //number of strongest beacons used for the algorithm
+    //----------------------------------------------------------------------------------------------
+
     //--------------------------------------others--------------------------------------------------
     private NavigationView navigationView;
     private ImageView circleUserAnim;
@@ -71,7 +83,6 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //private Animation  scaleUp;
     private Dialog exhibitDialog;
     private ImageButton exhibit63Btn;
-    int nrOfStrongestBeacons =3; //number of strongest beacons used for the algorithm
     ImageView arrow;
     private Calendar calendar;
     private SimpleDateFormat simpleDateFormat;
@@ -80,6 +91,8 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     Point thirdExhibitPoint;
     Point fourthExhibitPoint;
     ArrayList<Point> listOfExhibits;
+    int finishedBeaconsIterator = 0; //variable that determines whether the measurements have been collected from beacons
+    int finishedWifiIterator = 0; //variable that determines whether the measurements have been collected from wifi
     //-------------------------------exhibit rating-------------------------------------------------
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String EXHIBIT63 = "textExhibit63";
@@ -115,16 +128,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     TextView estimateXTv, estimateYTv, nrOfNeighbours;
     Context context;
     //----------------------------------------------------------------------------------------------
-    //-----------------------------configuration variables------------------------------------------
-    int numberOfSamples = 15; // number of needed samples to receive in online phase
-    int numberOfBeacons = 7; // beacons in system
-    int numberOfWifi = 1;    // number of AP's
-    int finishedBeaconsIterator = 0; //variable that determines whether the measurements have been collected from beacons
-    int finishedWifiIterator = 0; //variable that determines whether the measurements have been collected from wifi
-    int xPoints = 8; // number of X coordinates
-    int yPoints = 5; // number of Y coordinates
-    double percentRangeOfEuclideanDist = 0.2; //percentage of the Euclidean distance range
-    //----------------------------------------------------------------------------------------------
+
     //-------------variables needed to determine the direction intervals in compass-----------------
     String direction = "UP"; //default value
     int upperLimitUp = 327;
@@ -149,7 +153,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
     //----------------------------------------------------------------------------------------------
     //---------------------needed to previous Coordinates Bufor--------------------------------------
     ArrayList<Point> listOfPreviousCoordinates; //include previous localizations
-    double radiusOfCircleArea = 1.5; // the area in which the exhibit is highlighted [m]
+
     //----------------------------------------------------------------------------------------------
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -286,7 +290,7 @@ public class LocalizationActivity extends AppCompatActivity implements SensorEve
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                numberOfSamples = 15;
+
                 startScanBeaconFlag = true;
                 startScanWifiFlag = true;
             }
